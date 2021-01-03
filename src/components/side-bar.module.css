@@ -1,0 +1,17 @@
+.sideBar {
+    grid-area: side-bar;
+    border: 1px solid red;
+}
+
+.sideBarBlock {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.sideBarElems {
+    list-style-type: none;
+    padding: 0px;
+}
+
+
+

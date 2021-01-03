@@ -1,3 +1,7 @@
+body {
+    height: 100px;
+    padding: 20px;
+}
 .App {
     display: grid;
 
@@ -5,51 +9,15 @@
     'header header'
     'side-bar content';
 
-    grid-template-rows: 60px 1fr;
+    grid-template-rows: 60px 600px;
     grid-template-columns: 2fr 10fr;
     grid-gap: 10px;
   
 }
 
-                        /* header */
-.header {
-    grid-area: header;
-    border: 1px solid red;
-}
-#logo img{
-    height: 59px;
-}
 
 
 
-                        /* side-bar */
-.side-bar {
-    grid-area: side-bar;
-    border: 1px solid red;
-}
 
-.sideBarElems {
-    list-style-type: none;
-    padding: 0px;
-}
 
-.elems {
-    width: 90%;
-    margin: 0 auto;
-}
 
-#settingsSideBar {
-    border: 1px solid green;
-    width: 20%;
-    margin: 0 auto;
-}
-
-                        /* content */
-.content {
-    grid-area: content;
-    border: 1px solid red;
-}
-
-.content img {
-    width: 100%;
-}
