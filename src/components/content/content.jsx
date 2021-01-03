@@ -1,11 +1,13 @@
 import React from 'react';
 import style from './content.module.css';
+import MyPosts from './MyPosts/MyPosts';
 
 class Content extends React.Component {
     render() {
         return (
         <div className={style.content}>
-            <img alt="contentImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTU1dFR0DR4d0wILeQRaH1oo1Dlsag-Gp2dXg&usqp=CAU"/>
+            <img alt="contentImg" src="https://pro.sony/s3/2017/07/26100026/top-banner_1600x450.jpg"/>
+            <MyPosts />
         </div>
         )
     }
