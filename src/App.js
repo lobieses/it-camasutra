@@ -1,7 +1,7 @@
 import './App.css';
-import Header from './components/header';
-import SideBar from './components/side-bar';
-import Content from './components/content';
+import Header from './components/header/header';
+import SideBar from './components/side-bar/side-bar';
+import Content from './components/content/content';
 
 
 
