@@ -6,21 +6,22 @@ class SideBar extends React.Component {
         return (
         <div className={style.sideBar}>
             <div className={style.sideBarBlock}>
-                <ul className={style.sideBarElems}>
-                    <li>Profile</li>
-                    <li>Message</li>
-                    <li>News</li>
-                    <li>Music</li>
-                </ul>
-            </div>
-            <div className={style.sideBarBlock}>
-                <ul className={style.sideBarElems}>
-                    <li>Settings</li>
-                </ul>
-            </div>
-            <div className={style.friends}>
-                
-            </div>
+                <div className={style.sideBarElems}>
+                    <a href="/profile">Profile</a>
+                </div>
+                <div className={style.sideBarElems}>
+                    <a href="/message">Message</a>
+                </div>
+                <div className={style.sideBarElems}>
+                    <a href="#">News</a>
+                </div>
+                <div className={style.sideBarElems}>
+                    <a href="#">Music</a>
+                </div>
+                <div className={style.sideBarElems}>
+                    <a href="#">Settings</a>
+                </div>
+            </div> 
         </div>
         )
     }

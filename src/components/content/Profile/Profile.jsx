@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './content.module.css';
+import style from './Profile.module.css';
 import MyPosts from './MyPosts/MyPosts';
 
 class Content extends React.Component {

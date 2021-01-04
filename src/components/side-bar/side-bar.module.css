@@ -8,9 +8,15 @@
     margin: 0 auto;
 }
 
+.sideBarElems:last-child {
+    margin-top: 40px
+}
+
 .sideBarElems {
-    list-style-type: none;
-    padding: 0px;
+    margin-top: 10px;
+}
+.sideBarElems a {
+    text-decoration: none
 }
 
 
