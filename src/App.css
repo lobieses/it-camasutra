@@ -1,6 +1,6 @@
 body {
-    height: 100px;
     padding: 20px;
+    background-image: url(./constructive_bg_01.jpg);
 }
 .App {
     display: grid;
@@ -15,7 +15,9 @@ body {
 }
 .content {
     grid-area: content;
-    border: 1px solid red;  
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgb(228, 27, 211);
+    box-shadow: 0px 0px 3px 1px rgb(218, 27, 202);
 }
 
 
