@@ -1,7 +1,8 @@
 .sideBar {
     grid-area: side-bar;
     background-color: rgba(0, 0, 0, 0.5);
-    box-shadow: 0px 0px 3px 1px rgb(218, 27, 202);
+    border: 1px solid rgb(90, 93, 138);
+    box-shadow: 0px 0px 3px 1px rgb(90, 93, 138);
 }
 
 .sideBarBlock {

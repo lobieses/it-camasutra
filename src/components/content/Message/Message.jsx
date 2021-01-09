@@ -1,23 +1,22 @@
 import React from 'react';
 import style from './Message.module.css';
+import Dialogs from './Dialogs/Dialogs';
+import Chat from './Chat/Chat';
 
 class Message extends React.Component {
     render() {
         return (
             <div className={style.messageBlock}> 
-                <div className={style.name}>
-                    Dialogs
+                <div className={style.nameBlock}>
+                    Dialogs                            
                 </div>
-                <div className={style.dialogsBlock}>
-                    <div className={style.dialogs}>
-                        <div>• Сережа</div>
-                        <div>• Катя</div>
-                        <div>• Света</div>
-                    </div>      
+                <div className={style.dialogs}>
+                   <Dialogs /> 
+                </div>   
+                <div className={style.chat}>
+                   <Chat /> 
                 </div>
-                <div className={style.messages}>
-
-                </div>
+                
             </div>
         )
     }

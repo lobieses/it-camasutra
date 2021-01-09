@@ -1,0 +1,22 @@
+a {
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    font-size: 30px;
+    color: rgb(96, 97, 161);
+    transition: all 0.2s;
+}
+
+a:hover {
+    color: rgb(218, 27, 202);   
+}
+
+.dotInName {
+    margin-right: 10px;
+    color: rgb(156, 156, 156); 
+    transition: 0.6s all;
+}
+
+a:hover > .dotInName {
+    color: rgb(66, 138, 255);
+}
