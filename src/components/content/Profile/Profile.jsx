@@ -8,7 +8,7 @@ class Content extends React.Component {
         return (
         <div className={style.content}>
             <ProfileInfo />
-            <MyPosts />
+            <MyPosts profilePosts={this.props.profilePosts}/>
         </div>
         )
     }

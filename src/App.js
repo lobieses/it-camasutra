@@ -5,22 +5,28 @@ import Profile from './components/content/Profile/Profile';
 import Message from './components/content/Message/Message';
 import {
     BrowserRouter as Router,
-    Switch,
     Route,
-    Link
   } from "react-router-dom";
 
 
 
-function App() {                
+function App(props) {           
     return (
         <Router>
             <div className="App">
                 <Header />
                 <SideBar />
                 <div className='content'>
-                    <Route path='/profile' component={Profile}/>
-                    <Route path='/message' component={Message}/>   
+                    <Route path='/profile' render={() => 
+                    <Profile 
+                        profilePosts={props.profilePosts}
+                    />}/>
+
+                    <Route path='/message' render={() => 
+                    <Message 
+                        dialogNames={props.dialogNames}
+                        dialogChatMessages={props.dialogChatMessages}
+                    />}/>   
                 </div>     
             </div>
         </Router>

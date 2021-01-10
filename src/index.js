@@ -6,7 +6,22 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App 
+    profilePosts = {[
+      {message: '1'},
+      {message: '2'},
+      {message: '3'}
+    ]}
+    dialogNames = {[
+      {id: 1, name: 'Сережа'},
+      {id: 2, name: 'Катя'},
+      {id: 3, name: 'Эва'}
+    ]}
+    dialogChatMessages = {[
+      {name: 'name', message: 'hi'},
+      {name: 'name', message: 'hi'},
+    ]}
+    />
   </React.StrictMode>,
   document.getElementById('root')             
 );

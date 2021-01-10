@@ -5,16 +5,21 @@ import Chat from './Chat/Chat';
 
 class Message extends React.Component {
     render() {
+        const chatElems = this.props.dialogChatMessages.map(message => {
+            return <Chat name={message.name} message={message.message}/>
+        });
         return (
             <div className={style.messageBlock}> 
                 <div className={style.nameBlock}>
                     Dialogs                            
                 </div>
                 <div className={style.dialogs}>
-                   <Dialogs /> 
+                   <Dialogs 
+                        dialogNames={this.props.dialogNames}
+                   /> 
                 </div>   
                 <div className={style.chat}>
-                   <Chat /> 
+                    {chatElems}
                 </div>
                 
             </div>

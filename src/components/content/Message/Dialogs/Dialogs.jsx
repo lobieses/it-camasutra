@@ -4,16 +4,15 @@ import Name from './Name/Name';
 
 class Dialogs extends React.Component {
     render() {
+        const names = this.props.dialogNames.map(name => {
+            return <Name id={name.id} name={name.name}/>
+        });
         return (
-            <div> 
-                <div className={style.dialogsBlock}>
-                    <div className={style.dialogs}>
-                        <Name id={'/1'} name={'Сережа'} />
-                        <Name id={'/2'} name={'Катя'} />
-                        <Name id={'/3'} name={'Света'} />
-                    </div>      
-                </div>
-            </div>
+            <div className={style.dialogsBlock}>
+                <div className={style.dialogs}>
+                    {names}
+                </div>      
+            </div>     
         )
     }
 }   
