@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 class Name extends React.Component {
     render() {
         return (
-            <NavLink to={'/message' + this.props.id}><span className={style.dotInName}>•</span>{this.props.name}</NavLink>
+            <NavLink to={'/message/' + this.props.id}><span className={style.dotInName}>•</span>{this.props.name}</NavLink>
         )
     }
 }

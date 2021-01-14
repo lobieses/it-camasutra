@@ -7,8 +7,8 @@ class Content extends React.Component {
     render() {
         return (
         <div className={style.content}>
-            <ProfileInfo />
-            <MyPosts profilePosts={this.props.profilePosts}/>
+            <ProfileInfo addPost={this.props.addPost} updateTextNewPost={this.props.updateTextNewPost} postText={this.props.state.textNewPost}/>
+            <MyPosts profilePosts={this.props.state.posts}/>
         </div>
         )
     }

@@ -2,7 +2,13 @@ import React from 'react';
 import style from './ProfileInfo.module.css';
 
 class ProfileInfo extends React.Component {
+    changePostText(refElem) {
+        this.props.updateTextNewPost(refElem.current.value);
+    }
+
     render() {
+        let postElem = React.createRef();
+        
         return (
             <div>
                 <div className={style.backgroundImage}>
@@ -13,8 +19,8 @@ class ProfileInfo extends React.Component {
                 </div>
                 <div className={style.createPost}>
                     <h2>My posts</h2>
-                    <textarea placeholder="your news..."></textarea>
-                    <button>Send</button>
+                    <textarea placeholder="your news..." ref={postElem} value={this.props.postText} onChange={this.changePostText.bind(this, postElem)}></textarea>
+                    <button onClick={this.props.addPost}>Send</button>
                 </div> 
             </div>
         )

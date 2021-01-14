@@ -10,11 +10,11 @@ class Chat extends React.Component {
                         <img alt="avatar" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEQR1NSz1oP2mOuhy6IWixQJjwpYrYD-HEwA&usqp=CAU"/>
                     </div> 
                     <div className={style.name}>
-                        name
+                        {this.props.name}
                     </div>      
                 </div>
                 <div className={style.message}>
-                    <p>message</p>
+                    <p>{this.props.message}</p>
                 </div>
             </div>
         )

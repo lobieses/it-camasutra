@@ -1,6 +1,6 @@
 .chat {
-    display: block;
     display: flex;
+    margin-top: 10px;
 }
 
 .blockInfo .avatar {

@@ -19,14 +19,12 @@ function App(props) {
                 <div className='content'>
                     <Route path='/profile' render={() => 
                     <Profile 
-                        profilePosts={props.profilePosts}
-                    />}/>
-
+                        state={props.state.profilePage}
+                        addPost={props.addPost}
+                        updateTextNewPost={props.updateTextNewPost}/>}/>
                     <Route path='/message' render={() => 
                     <Message 
-                        dialogNames={props.dialogNames}
-                        dialogChatMessages={props.dialogChatMessages}
-                    />}/>   
+                        state={props.state.messagePage}/>}/>   
                 </div>     
             </div>
         </Router>

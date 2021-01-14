@@ -5,7 +5,7 @@ import Chat from './Chat/Chat';
 
 class Message extends React.Component {
     render() {
-        const chatElems = this.props.dialogChatMessages.map(message => {
+        const chatMessages = this.props.state.chat.map(message => {
             return <Chat name={message.name} message={message.message}/>
         });
         return (
@@ -15,11 +15,11 @@ class Message extends React.Component {
                 </div>
                 <div className={style.dialogs}>
                    <Dialogs 
-                        dialogNames={this.props.dialogNames}
+                        dialogNames={this.props.state.dialogNames}
                    /> 
                 </div>   
                 <div className={style.chat}>
-                    {chatElems}
+                    {chatMessages}
                 </div>
                 
             </div>
