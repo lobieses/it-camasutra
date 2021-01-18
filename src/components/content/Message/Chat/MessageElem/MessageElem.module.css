@@ -1,0 +1,30 @@
+.chat {
+    display: flex;
+    margin-top: 10px;
+}
+
+.blockInfo .avatar {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.blockInfo .avatar img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+}
+
+.blockInfo .name {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 20px;
+    color: rgb(135, 137, 221);
+}
+
+.message {                   /* КОСТЫЛЬ */
+    display: table-cell;
+    vertical-align: middle;
+    margin-left: 20px;
+    font-size: 15px;
+    color: rgb(135, 137, 221);
+}

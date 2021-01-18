@@ -3,13 +3,13 @@ import reportWebVitals from './reportWebVitals';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import {store} from './Redux/state';
+import store from './Redux/state';
 
 
 let rerenderEntireTree = (state) => {
     ReactDOM.render(
         <React.StrictMode>
-            <App state={state} addPost={store.addPost.bind(store)} updateTextNewPost={store.updateTextNewPost.bind(store)}/>
+            <App state={state} dispatch={store.dispatch.bind(store)} store={store}/>
         </React.StrictMode>,
         document.getElementById('root')             
     );

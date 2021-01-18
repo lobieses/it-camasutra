@@ -1,24 +1,33 @@
 import React from 'react';
+import MessageElem from './MessageElem/MessageElem'
 import style from './Chat.module.css';
+import {updateTextForNewMessageActionCreator, addMessageActionCreator} from './../../../../Redux/message-reducer';
 
-class Chat extends React.Component {
+class Messages extends React.Component {
+    changeMessageText(event) {
+        this.props.dispatch(updateTextForNewMessageActionCreator(event.target.value));   
+    }
+
+    addMessage() {
+        this.props.dispatch(addMessageActionCreator());
+    }
+
     render() {
+        const chatMessages = this.props.chatMessages.map(message => {
+            return <MessageElem name={message.name} message={message.message}/>
+        });
         return (
-            <div className={style.chat}>
-                <div className={style.blockInfo}>
-                    <div className={style.avatar}>
-                        <img alt="avatar" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEQR1NSz1oP2mOuhy6IWixQJjwpYrYD-HEwA&usqp=CAU"/>
-                    </div> 
-                    <div className={style.name}>
-                        {this.props.name}
-                    </div>      
+            <div>
+                <div>
+                    {chatMessages}
                 </div>
-                <div className={style.message}>
-                    <p>{this.props.message}</p>
-                </div>
+                <div className={style.sendBlock}>
+                    <textarea placeholder='Enter your message...' value={this.props.textMessage} onChange={this.changeMessageText.bind(this)}></textarea>
+                    <button onClick={this.addMessage.bind(this)}>Send</button>
+                </div>        
             </div>
         )
     }
 }
 
-export default Chat;
+export default Messages;

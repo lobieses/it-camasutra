@@ -1,14 +1,17 @@
 import React from 'react';
 import style from './ProfileInfo.module.css';
+import {updateTextForNewPostActionCreator, addPostActionCreator} from './../../../../Redux/profile-reducer';
 
 class ProfileInfo extends React.Component {
-    changePostText(refElem) {
-        this.props.updateTextNewPost(refElem.current.value);
+    changePostText(event) {
+        this.props.dispatch(updateTextForNewPostActionCreator(event.target.value));
+    }
+
+    addPost() {
+        this.props.dispatch(addPostActionCreator());
     }
 
     render() {
-        let postElem = React.createRef();
-        
         return (
             <div>
                 <div className={style.backgroundImage}>
@@ -19,8 +22,8 @@ class ProfileInfo extends React.Component {
                 </div>
                 <div className={style.createPost}>
                     <h2>My posts</h2>
-                    <textarea placeholder="your news..." ref={postElem} value={this.props.postText} onChange={this.changePostText.bind(this, postElem)}></textarea>
-                    <button onClick={this.props.addPost}>Send</button>
+                    <textarea placeholder="your news..." value={this.props.postText} onChange={this.changePostText.bind(this)}></textarea>
+                    <button onClick={this.addPost.bind(this)}>Send</button>
                 </div> 
             </div>
         )

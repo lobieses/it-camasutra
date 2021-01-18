@@ -7,7 +7,7 @@ class Content extends React.Component {
     render() {
         return (
         <div className={style.content}>
-            <ProfileInfo addPost={this.props.addPost} updateTextNewPost={this.props.updateTextNewPost} postText={this.props.state.textNewPost}/>
+            <ProfileInfo postText={this.props.state.textNewPost} dispatch={this.props.dispatch}/>
             <MyPosts profilePosts={this.props.state.posts}/>
         </div>
         )

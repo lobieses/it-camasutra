@@ -18,13 +18,13 @@ function App(props) {
                 <SideBar />
                 <div className='content'>
                     <Route path='/profile' render={() => 
-                    <Profile 
-                        state={props.state.profilePage}
-                        addPost={props.addPost}
-                        updateTextNewPost={props.updateTextNewPost}/>}/>
+                        <Profile 
+                            state={props.state.profilePage}
+                            dispatch={props.dispatch}/>}/>
                     <Route path='/message' render={() => 
-                    <Message 
-                        state={props.state.messagePage}/>}/>   
+                        <Message 
+                            store={props.store}
+                            dispatch={props.dispatch}/>}/>   
                 </div>     
             </div>
         </Router>

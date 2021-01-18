@@ -1,4 +1,7 @@
-export let store = {
+import profileReducer from './profile-reducer';
+import messageReducer from './message-reducer';
+
+let store = {
     _state: {
         profilePage: {
             posts: [
@@ -20,39 +23,31 @@ export let store = {
                 {name: 'name', message: 'hi'},
                 {name: 'name', message: 'hi'},
             ],
+            textNewMessage: '',
         }
-    },
-
-    getState() {
-        return this._state
-    },
-
-    addPost() {
-        const newPost = {
-            message: this._state.profilePage.textNewPost
-        };
-
-        this._state.profilePage.textNewPost = '';
-
-        this._state.profilePage.posts.push(newPost);
-        this._callSubscriber(this._state);
-    },
-
-    updateTextNewPost(text) {
-        this._state.profilePage.textNewPost = text;
-        this._callSubscriber(this._state);
     },
 
     _callSubscriber() {
     
     },
 
+    getState() {
+        return this._state
+    },
+
     subscribe(observer) {
         this._callSubscriber = observer;
     },
+
+    dispatch(action) {
+         this._state.profilePage = profileReducer(this._state.profilePage, action);
+         this._state.messagePage = messageReducer(this._state.messagePage, action);
+
+         this._callSubscriber(this._state)
+    }
 }
 
-
+export default store
 
 
 
