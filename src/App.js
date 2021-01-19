@@ -1,8 +1,8 @@
 import './App.css';
 import Header from './components/header/header';
 import SideBar from './components/side-bar/side-bar';
-import Profile from './components/content/Profile/Profile';
-import Message from './components/content/Message/Message';
+import ProfileContainer from './components/content/Profile/ProfileContainer';
+import MessageContainer from './components/content/Message/MessageContainer';
 import {
     BrowserRouter as Router,
     Route,
@@ -10,7 +10,7 @@ import {
 
 
 
-function App(props) {           
+function App(props) {     
     return (
         <Router>
             <div className="App">
@@ -18,11 +18,11 @@ function App(props) {
                 <SideBar />
                 <div className='content'>
                     <Route path='/profile' render={() => 
-                        <Profile 
-                            state={props.state.profilePage}
+                        <ProfileContainer 
+                            store={props.store}
                             dispatch={props.dispatch}/>}/>
                     <Route path='/message' render={() => 
-                        <Message 
+                        <MessageContainer 
                             store={props.store}
                             dispatch={props.dispatch}/>}/>   
                 </div>     

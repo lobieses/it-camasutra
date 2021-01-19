@@ -1,15 +1,14 @@
 import React from 'react';
 import MessageElem from './MessageElem/MessageElem'
 import style from './Chat.module.css';
-import {updateTextForNewMessageActionCreator, addMessageActionCreator} from './../../../../Redux/message-reducer';
 
 class Messages extends React.Component {
     changeMessageText(event) {
-        this.props.dispatch(updateTextForNewMessageActionCreator(event.target.value));   
+        this.props.onChangeMessageText(event.target.value);
     }
 
     addMessage() {
-        this.props.dispatch(addMessageActionCreator());
+        this.props.onAddMessage();
     }
 
     render() {

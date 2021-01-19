@@ -5,7 +5,6 @@ import Chat from './Chat/Chat'
 
 class Message extends React.Component {
     render() {
-        const messagePage = this.props.store.getState().messagePage;
         return (
             <div className={style.messageBlock}> 
                 <div className={style.nameBlock}>
@@ -13,14 +12,15 @@ class Message extends React.Component {
                 </div>
                 <div className={style.dialogs}>
                     <Dialogs 
-                        dialogNames={messagePage.dialogNames}
+                        dialogNames={this.props.messagePage.dialogNames}
                     /> 
                 </div>   
                 <div className={style.chat}>
                     <Chat 
-                        chatMessages={messagePage.chat}
-                        textMessage={messagePage.textNewMessage}
-                        dispatch={this.props.dispatch}
+                        chatMessages={this.props.messagePage.chat}
+                        textMessage={this.props.messagePage.textNewMessage}
+                        onChangeMessageText={this.props.onChangeMessageText}
+                        onAddMessage={this.props.onAddMessage}
                     />
                 </div>        
             </div>
