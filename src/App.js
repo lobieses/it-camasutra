@@ -10,7 +10,7 @@ import {
 
 
 
-function App(props) {     
+const App = () => {     
     return (
         <Router>
             <div className="App">
@@ -18,17 +18,12 @@ function App(props) {
                 <SideBar />
                 <div className='content'>
                     <Route path='/profile' render={() => 
-                        <ProfileContainer 
-                            store={props.store}
-                            dispatch={props.dispatch}/>}/>
+                        <ProfileContainer/>}/>
                     <Route path='/message' render={() => 
-                        <MessageContainer 
-                            store={props.store}
-                            dispatch={props.dispatch}/>}/>   
+                        <MessageContainer/>}/>   
                 </div>     
             </div>
-        </Router>
-        
+        </Router> 
   );
 }
 

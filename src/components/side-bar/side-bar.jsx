@@ -2,9 +2,8 @@ import React from 'react';
 import style from './side-bar.module.css';
 import { NavLink } from "react-router-dom";
 
-class SideBar extends React.Component {
-    render() {
-        return (
+const SideBar = () => {
+    return (
         <div className={style.sideBar}>
             <div className={style.sideBarBlock}>
                 <div className={style.sideBarElems}>
@@ -24,8 +23,7 @@ class SideBar extends React.Component {
                 </div>
             </div> 
         </div>
-        )
-    }
+    )
 }
 
 export default SideBar;
