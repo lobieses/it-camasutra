@@ -19,6 +19,9 @@ const SideBar = () => {
                     <a href="#">Music</a>
                 </div>
                 <div className={style.sideBarElems}>
+                    <NavLink to="/FindUsers" activeClassName={style.active}>Find users</NavLink>
+                </div>
+                <div className={style.sideBarElems}>
                     <a href="#">Settings</a>
                 </div>
             </div> 

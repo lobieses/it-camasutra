@@ -1,0 +1,23 @@
+.namePage {
+    font-size: 35px;
+    color: rgb(96, 97, 161);
+    margin-left: 10px;
+    
+}
+.users {
+    width: 80%;
+    margin: 0 auto;
+}
+.loadMore {
+    margin-top: 30px;
+    text-align: center;
+}
+.loadMore button {
+    width: 300px;
+    height: 60px;
+    background: rgb(146, 207, 146);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 30px;
+}

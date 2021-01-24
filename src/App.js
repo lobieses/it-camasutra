@@ -3,6 +3,7 @@ import Header from './components/header/header';
 import SideBar from './components/side-bar/side-bar';
 import ProfileContainer from './components/content/Profile/ProfileContainer';
 import MessageContainer from './components/content/Message/MessageContainer';
+import FindUsersContainer from './components/content/FindUsers/FindUsersContainer';
 import {
     BrowserRouter as Router,
     Route,
@@ -20,7 +21,9 @@ const App = () => {
                     <Route path='/profile' render={() => 
                         <ProfileContainer/>}/>
                     <Route path='/message' render={() => 
-                        <MessageContainer/>}/>   
+                        <MessageContainer/>}/>  
+                    <Route path='/FindUsers' render={() => 
+                        <FindUsersContainer/>}/>    
                 </div>     
             </div>
         </Router> 

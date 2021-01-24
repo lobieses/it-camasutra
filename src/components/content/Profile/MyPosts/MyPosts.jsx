@@ -1,6 +1,6 @@
 import React from 'react';
 import Post from './Post/Post';
-import style from './MyPosts.module.css';
+//import style from './MyPosts.module.css';
 
 const MyPosts = (props) => {
     const posts = props.profilePosts.map(post => {

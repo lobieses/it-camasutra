@@ -17,28 +17,29 @@ let initialState = {
 
 const messageReducer = (state = initialState, action) => {
     switch(action.type) {
-        case 'UPDATE-TEXT-FOR-NEW-MESSAGE':
-            state.textNewMessage = action.text;
-            return state;
-        case 'ADD-MESSAGE': 
-            const newMessage = {
-                name: 'name', message: state.textNewMessage
-            }
-
-            state.textNewMessage = '';
-
-            state.chat.push(newMessage);
-            return state;
+        case UPDATE_TEXT_FOR_NEW_MESSAGE: {
+            return {
+                ...state,
+                textNewMessage: action.text
+            };
+        }      
+        case ADD_MESSAGE: {       
+            return {
+                ...state,
+                chat: [...state.chat, {name: 'name', message: state.textNewMessage}],
+                textNewMessage: ''
+            };
+        }
         default: 
             return state;
     }
 }
 
-export let updateTextForNewMessageActionCreator = (text) => {           
+export const updateTextForNewMessageActionCreator = (text) => {           
     return {type: UPDATE_TEXT_FOR_NEW_MESSAGE, text};
 }
 
-export let addMessageActionCreator = () => {
+export const addMessageActionCreator = () => {
     return {type: ADD_MESSAGE};
 }
 

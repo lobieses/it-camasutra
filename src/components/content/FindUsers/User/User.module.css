@@ -1,0 +1,48 @@
+.user {
+    display: flex;
+    margin-top: 50px;   
+}
+.avatar {
+    text-align: center;
+    margin-bottom: 5px;
+}
+.avatar img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+}
+.followButton button {
+    width: 80px;
+    height: 27px;
+    background: rgb(146, 207, 146);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.blockInfo {
+    width: 100%;
+    display: grid;
+    grid-template-areas: 
+    'fullName location'
+    'status location';
+    grid-template-columns: 10fr 150px;
+    color: rgb(112, 113, 187);
+    margin-left: 30px;
+}
+.fullName {
+    grid-area: fullName;
+    font-size: 25px;
+    font-weight: 450;
+}
+.status {
+    grid-area: status;
+}
+.status div {
+    margin-top: 27px;
+}
+.location {
+    grid-area: location;  
+    font-size: 20px;
+    font-weight: 450;
+}
