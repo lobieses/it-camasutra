@@ -14,7 +14,7 @@ const User = (props) => {
         <div className={style.user}> 
             <div className={style.sideBarInfo}>
                 <div className={style.avatar}>
-                    <img src={props.userInfo.avatarURL} alt="avatar"/>
+                    <img src={props.userInfo.photos.small != null ? props.userInfo.photos.small : 'https://n1s1.hsmedia.ru/01/35/7f/01357f0e8f70d876c90cc0f5a681c6bb/620x429_1_02503db0df69f8beb9324bb72a99e23e@1200x831_0xac120003_12947200691611090922.jpg'} alt="avatar"/>
                 </div>
                 <div className={style.followButton}>
                     {props.userInfo.followed 
@@ -25,13 +25,13 @@ const User = (props) => {
             </div>
             <div className={style.blockInfo}>
                 <div className={style.fullName}>
-                    {props.userInfo.fullName}
+                    {props.userInfo.name}
                 </div>
                 <div className={style.status}>
                     <div>{props.userInfo.status}</div>
                 </div>
                 <div className={style.location}>
-                    {props.userInfo.location.city + ', ' + props.userInfo.location.country}
+                     {/*{props.userInfo.location.city + ', ' + props.userInfo.location.country}*/}
                 </div>
             </div>
         </div>

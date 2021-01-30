@@ -7,7 +7,6 @@ let initialState = {
 };
 
 const findUsersReducer = (state = initialState, action) => {
-    console.log(state)
     switch(action.type) {
         case FOLLOW: {
             return {
@@ -32,7 +31,7 @@ const findUsersReducer = (state = initialState, action) => {
             }
         } 
         case SET_USERS: {
-            return {...state, users: [...action.users]}      //ЮЗЕРЫ ПУШИЛИСЬ В X2 РОТ ЕБАЛ 
+            return {...state, users: [...state.users, ...action.users]}      
         }       
         default: 
             return state;
