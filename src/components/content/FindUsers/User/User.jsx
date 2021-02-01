@@ -30,9 +30,7 @@ const User = (props) => {
                 <div className={style.status}>
                     <div>{props.userInfo.status}</div>
                 </div>
-                <div className={style.location}>
-                     {/*{props.userInfo.location.city + ', ' + props.userInfo.location.country}*/}
-                </div>
+
             </div>
         </div>
     )

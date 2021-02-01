@@ -19,13 +19,12 @@
     border-radius: 10px;
     cursor: pointer;
 }
-
 .blockInfo {
     width: 100%;
     display: grid;
     grid-template-areas: 
-    'fullName location'
-    'status location';
+    'fullName'
+    'status';
     grid-template-columns: 10fr 150px;
     color: rgb(112, 113, 187);
     margin-left: 30px;
@@ -40,9 +39,4 @@
 }
 .status div {
     margin-top: 27px;
-}
-.location {
-    grid-area: location;  
-    font-size: 20px;
-    font-weight: 450;
 }
