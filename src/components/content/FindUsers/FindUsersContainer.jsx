@@ -1,10 +1,40 @@
+import React from 'react';
 import {connect} from 'react-redux';
 import FindUsers from './FindUsers';
 import {followAC, unfollowAC, setUsersAC, setPageAC, setTotalCountsAC} from './../../../Redux/findUsers-reducer';
+import * as axios from 'axios';
 
+class FindUsersContainer extends React.Component {
+    componentDidMount() {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.focusPage}`)
+            .then(responce => {
+                this.props.setUsers(responce.data.items);
+                this.props.setTotalCounts(responce.data.totalCount);
+            });
+    }
+    
+    onChangePage(page) {
+        this.props.setFocusPage(page);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${page}`)
+            .then(responce => {
+                this.props.setUsers(responce.data.items);
+            });
+    }
+
+    render() {
+        return <FindUsers     
+            onChangePage={this.onChangePage.bind(this)}
+            onFollow={this.props.onFollow}
+            onUnFollow={this.props.onUnFollow}
+            users={this.props.users}
+            totalCounts={this.props.totalCounts}
+            pageSize={this.props.pageSize}
+            focusPage={this.props.focusPage}
+        />
+    }
+}
 
 const mapStateToProps = (state) => {
-
     return {
         users: state.findUsersPage.users,
         pageSize: state.findUsersPage.pageSize,
@@ -21,18 +51,17 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(setTotalCountsAC(totalCounts));
         },
         setFocusPage: (page) => {
-            dispatch(setPageAC(page))
+            dispatch(setPageAC(page));
         },
         onFollow: (id) => {
             dispatch(followAC(id));
         },
-        onUnfollow: (id) => {
+        onUnFollow: (id) => {
             dispatch(unfollowAC(id));
         },
         
     }
 }
 
-const FindUsersContainer = connect(mapStateToProps, mapDispatchToProps)(FindUsers);
+export default connect(mapStateToProps, mapDispatchToProps)(FindUsersContainer);
 
-export default FindUsersContainer;

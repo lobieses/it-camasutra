@@ -7,7 +7,7 @@ const User = (props) => {
     }
 
     const unfollow = () => {
-        props.onUnfollow(props.userInfo.id)
+        props.onUnFollow(props.userInfo.id)
     }
 
     return (
