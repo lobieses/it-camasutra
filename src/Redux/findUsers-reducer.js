@@ -3,13 +3,14 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
 const SET_PAGE = 'CHANGE-PAGE';
 const SET_TOTAL_COUNTS = 'SET-TOTAL-COUNTS';
-
+const SET_IS_FETCHING = 'SET-IS-FETCHING';
 
 let initialState = {
     users: [],
     pageSize: 3,
     totalCounts: 0,
-    focusPage: 1
+    focusPage: 1,
+    isFetching: false
 };
 
 const findUsersReducer = (state = initialState, action) => {
@@ -51,29 +52,39 @@ const findUsersReducer = (state = initialState, action) => {
                 })
             }
         } 
+        case SET_IS_FETCHING: {
+            return {
+                ...state,
+                isFetching: action.isFetching
+            }
+        }
         default: 
             return state;
     }
 }
 
-export const setUsersAC = (users) => {
+export const setUsers = (users) => {
     return {type: SET_USERS, users};
 }
  
-export const followAC = (id) => {
+export const follow = (id) => {
     return {type: FOLLOW, id};
 }
 
-export const unfollowAC = (id) => {
+export const unFollow = (id) => {
     return {type: UNFOLLOW, id};
 }
  
-export const setPageAC = (page) => {
+export const setPage = (page) => {
     return {type: SET_PAGE, page};
 }
 
-export const setTotalCountsAC = (totalCounts) => {
+export const setTotalCounts = (totalCounts) => {
     return {type: SET_TOTAL_COUNTS, totalCounts};
+}
+
+export const setFetching = (isFetching) => {
+    return {type: SET_IS_FETCHING, isFetching}
 }
 
 export default findUsersReducer;
