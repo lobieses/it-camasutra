@@ -1,5 +1,6 @@
 const UPDATE_TEXT_FOR_NEW_POST = 'UPDATE-TEXT-FOR-NEW-POST';
 const ADD_POST = 'ADD-POST';
+const SET_PROFILE = 'SET-PROFILE';
 
 let initialState = {
     posts: [
@@ -8,36 +9,46 @@ let initialState = {
         {message: '3'},
     ], 
     textNewPost: '',
+    profile: undefined
 };
 
 const profileReducer = (state = initialState, action) => {
     
     switch(action.type) {
-        case 'UPDATE-TEXT-FOR-NEW-POST': {
+        case UPDATE_TEXT_FOR_NEW_POST: {
             return {
                 ...state,
                 textNewPost: action.text
             };
         }           
-        case 'ADD-POST': {
+        case ADD_POST: {
             return {
                 ...state,
                 posts: [...state.posts, {message: state.textNewPost}],
                 textNewPost: ''
             };
-        }        
+        }    
+        case SET_PROFILE: {
+            return {
+                ...state, 
+                profile: action.profile
+            }
+        }    
         default: 
             return state;
     }
 }
 
-export let updateTextForNewPostActionCreator = (text) => {           //PROFILE
+export const updateTextForNewPost = (text) => {           
     return {type: UPDATE_TEXT_FOR_NEW_POST, text};
 }
 
-export let addPostActionCreator = () => {
+export const addPost = () => {
     return {type: ADD_POST};
 }
 
+export const setProfile = (profile) => {
+    return {type: SET_PROFILE, profile};
+}
 
 export default profileReducer;

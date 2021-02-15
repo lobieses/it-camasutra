@@ -2,24 +2,31 @@
     width: 100%;
     height: 200px;
 }
-
-.createPost {
-    width: 95%;
-    margin: 0 auto;
+.profile {
+    display: flex; 
+    margin-left: 10px; 
 }
-
-.createPost textarea {
+.profile .sideInfo {
+    width: 150px;
+}
+.sideInfo .profileAvatar{
+    text-align: center;
+}
+.sideInfo .profileAvatar img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+.sideInfo .fullName {
+    text-align: center;
+    color: rgb(96, 97, 161);
+    font-size: 20px;
+}
+.otherInfo {
     width: 100%;
-    height: 70px;
-    resize: none;
-    background: rgb(235, 235, 235);
-    border: none;
 }
-
-.createPost button {
-    display: block;
-    width: 130px;
-    height: 35px;
-    background: rgb(146, 207, 146);
-    border: none;
-}   
+.otherInfo .status {
+    font-size: 25px;
+    margin-left: 10px;
+    color: rgb(96, 97, 161);
+}

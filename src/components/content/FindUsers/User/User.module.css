@@ -5,11 +5,13 @@
 .avatar {
     text-align: center;
     margin-bottom: 5px;
+    cursor: pointer;
 }
-.avatar img {
+.avatar a img {
     width: 60px;
     height: 60px;
     border-radius: 50px;
+    
 }
 .followButton button {
     width: 80px;

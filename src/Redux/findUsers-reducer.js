@@ -1,16 +1,20 @@
+import {act} from "@testing-library/react";
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
-const SET_USERS = 'SET-USERS';
-const SET_PAGE = 'CHANGE-PAGE';
-const SET_TOTAL_COUNTS = 'SET-TOTAL-COUNTS';
-const SET_IS_FETCHING = 'SET-IS-FETCHING';
+const SET_USERS = 'SET_USERS';
+const SET_PAGE = 'CHANGE_PAGE';
+const SET_TOTAL_COUNTS = 'SET_TOTAL_COUNTS';
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+const TOGGLE_FOLLOWING_IN_PROGRESS = 'TOGGLE_FOLLOWING_IN_PROGRESS';
 
 let initialState = {
     users: [],
     pageSize: 3,
     totalCounts: 0,
     focusPage: 1,
-    isFetching: false
+    isFetching: false,
+    followingInProgress: []
 };
 
 const findUsersReducer = (state = initialState, action) => {
@@ -52,10 +56,18 @@ const findUsersReducer = (state = initialState, action) => {
                 })
             }
         } 
-        case SET_IS_FETCHING: {
+        case TOGGLE_IS_FETCHING: {
             return {
                 ...state,
                 isFetching: action.isFetching
+            }
+        }
+        case TOGGLE_FOLLOWING_IN_PROGRESS: {
+            return  {
+                ...state,
+                followingInProgress: action.isFetching
+                ? [...state.followingInProgress, action.id]
+                : state.followingInProgress.filter(id => id != action.id)
             }
         }
         default: 
@@ -83,8 +95,11 @@ export const setTotalCounts = (totalCounts) => {
     return {type: SET_TOTAL_COUNTS, totalCounts};
 }
 
-export const setFetching = (isFetching) => {
-    return {type: SET_IS_FETCHING, isFetching}
+export const toggleFetching = (isFetching) => {
+    return {type: TOGGLE_IS_FETCHING, isFetching};
+}
+export const toggleFollowingInProgress = (id, isFetching) => {
+    return {type: TOGGLE_FOLLOWING_IN_PROGRESS, id, isFetching};
 }
 
 export default findUsersReducer;

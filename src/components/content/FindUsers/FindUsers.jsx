@@ -11,11 +11,13 @@ const FindUsers = (props) => {
 
 
     const createUsers = props.users.map(info => {
-        return <User 
-            key={info.id} 
-            userInfo={info} 
-            onFollow={props.onFollow} 
-            onUnFollow={props.onUnFollow}/>
+        return <User key={info.id}
+            onFollow={props.onFollow}
+            onUnFollow={props.onUnFollow}
+            onFollowingInProgress={props.onFollowingInProgress}
+            userInfo={info}
+            followingInProgress={props.followingInProgress}
+        />
     });
          
     const pages = Math.ceil(props.totalCounts / props.pageSize);
