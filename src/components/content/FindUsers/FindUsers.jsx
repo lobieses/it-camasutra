@@ -9,14 +9,12 @@ const FindUsers = (props) => {
         } 
     }
 
-
     const createUsers = props.users.map(info => {
         return <User key={info.id}
+            userInfo={info}
             onFollow={props.onFollow}
             onUnFollow={props.onUnFollow}
-            onFollowingInProgress={props.onFollowingInProgress}
-            userInfo={info}
-            followingInProgress={props.followingInProgress}
+            followingInProgressUsers={props.followingInProgressUsers}
         />
     });
          
@@ -34,11 +32,11 @@ const FindUsers = (props) => {
     const pagesElem = pagesArr.map(page => {
         return <span 
                     key={page} 
-                    className={page == props.focusPage ? style.focusPage : undefined} 
+                    className={page === props.focusPage ? style.focusPage : undefined}
                     onClick={() => {props.onChangePage(page)}}
                 >{page}</span>
     });
-         
+
     return (
         <div> 
             <div className={style.namePage}>

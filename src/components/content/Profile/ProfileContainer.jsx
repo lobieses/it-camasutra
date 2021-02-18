@@ -3,7 +3,7 @@ import Profile from './Profile';
 import {
         updateTextForNewPost,
         addPost,
-        setProfile
+        getUserProfile
     } from './../../../Redux/profile-reducer';
 import {connect} from 'react-redux';
 import * as axios from 'axios';
@@ -13,10 +13,7 @@ class ProfileContainer extends React.Component {
     componentDidMount() {
         let id = this.props.match.params.userId;
         if(!this.props.match.params.userId) id = 2;
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${id}`)
-            .then(responce => {
-                this.props.setProfile(responce.data);
-            });
+        this.props.getUserProfile(id);
     }
     render() {
         return <Profile
@@ -39,5 +36,5 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {updateTextForNewPost, addPost, setProfile})(WithUrlDataContainerComponent)
+export default connect(mapStateToProps, {updateTextForNewPost, addPost, getUserProfile})(WithUrlDataContainerComponent)
 

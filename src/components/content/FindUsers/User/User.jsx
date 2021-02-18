@@ -1,16 +1,13 @@
 import React from 'react';
 import style from './User.module.css';
 import { Link } from "react-router-dom";
-import * as axios from "axios";
 
 const User = (props) => {
     const follow = () => {
-        props.onFollowingInProgress(props.userInfo.id, true);
         props.onFollow(props.userInfo.id);
     }
 
     const unfollow = () => {
-        props.onFollowingInProgress(props.userInfo.id, true);
         props.onUnFollow(props.userInfo.id);
     }
 
@@ -26,11 +23,11 @@ const User = (props) => {
                     {props.userInfo.followed 
                         ? <button
                             onClick={unfollow}
-                            disabled={props.followingInProgress.some(id => id === props.userInfo.id)}
+                            disabled={props.followingInProgressUsers.some(id => id === props.userInfo.id)}
                         >Unfollow</button>
                         : <button
                             onClick={follow}
-                            disabled={props.followingInProgress.some(id => id === props.userInfo.id)}
+                            disabled={props.followingInProgressUsers.some(id => id === props.userInfo.id)}
                         >Follow</button>
                     }
                 </div>
