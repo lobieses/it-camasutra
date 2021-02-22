@@ -6,8 +6,10 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 const Profile = (props) => {
     return (
         <div className={style.content}>
-            <ProfileInfo          
+            <ProfileInfo
+                updateStatus={props.updateStatus}
                 profile={props.profile}
+                status={props.status}
             />
             <MyPosts 
                 onChangePostText={props.updateTextForNewPost}

@@ -8,6 +8,27 @@ const instance = axios.create({
     }
 });
 
+export const profileAPI = {
+    getUserProfile(id) {
+        return instance.get(`profile/${id}`)
+            .then(response => {
+                return response.data;
+            });
+    },
+    getStatus(id) {
+        return instance.get(`profile/status/${id}`)
+            .then(response => {
+                return response.data;
+            });
+    },
+    updateStatus(status) {
+        return instance.put(`profile/status/`, {status})
+            .then(response => {
+                return response.data;
+            });
+    }
+}
+
 export const usersAPI = {
     getUsers(size = 3, page = 1) {
         return instance.get(`users?count=${size}&page=${page}`)
@@ -28,10 +49,8 @@ export const usersAPI = {
             });
     },
     getUserProfile(id) {
-        return instance.get(`profile/${id}`)
-            .then(response => {
-                return response.data;
-            });
+        console.error('ABOBA');
+        return profileAPI.getUserProfile((id));
     }
 };
 

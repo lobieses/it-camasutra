@@ -1,8 +1,9 @@
-import {usersAPI} from '../api/api';
+import {profileAPI, usersAPI} from '../api/api';
 
-const UPDATE_TEXT_FOR_NEW_POST = 'UPDATE-TEXT-FOR-NEW-POST';
-const ADD_POST = 'ADD-POST';
-const SET_PROFILE = 'SET-PROFILE';
+const UPDATE_TEXT_FOR_NEW_POST = 'UPDATE_TEXT_FOR_NEW_POST';
+const ADD_POST = 'ADD_POST';
+const SET_PROFILE = 'SET_PROFILE';
+const SET_STATUS = 'GET_STATUS';
 
 let initialState = {
     posts: [
@@ -11,7 +12,8 @@ let initialState = {
         {message: '3'},
     ], 
     textNewPost: '',
-    profile: undefined
+    profile: null,
+    status: null
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -34,8 +36,14 @@ const profileReducer = (state = initialState, action) => {
             return {
                 ...state, 
                 profile: action.profile
-            }
-        }    
+            };
+        }
+        case SET_STATUS: {
+            return  {
+                ...state,
+                status: action.status
+            };
+        }
         default: 
             return state;
     }
@@ -44,6 +52,8 @@ const profileReducer = (state = initialState, action) => {
 export const updateTextForNewPost = (text) => ({type: UPDATE_TEXT_FOR_NEW_POST, text});
 export const addPost = () => ({type: ADD_POST});
 export const setProfile = (profile) => ({type: SET_PROFILE, profile});
+export const setStatus = (status) => ({type: SET_STATUS, status});
+
 export const getUserProfile = (userId) => (dispatch) => {
     usersAPI.getUserProfile(userId)
         .then(profile => {
@@ -51,5 +61,21 @@ export const getUserProfile = (userId) => (dispatch) => {
         });
 }
 
+export const getStatus = (userId) => (dispatch) => {
+    profileAPI.getStatus(userId)
+        .then(status => {
+            debugger
+            dispatch(setStatus(status));
+        });
+}
+
+export const updateStatus = (status) => (dispatch) => {
+    profileAPI.updateStatus(status)
+        .then(response => {
+            if(response.resultCode === 0) {
+                dispatch(setStatus(status));
+            }
+        });
+}
 
 export default profileReducer;

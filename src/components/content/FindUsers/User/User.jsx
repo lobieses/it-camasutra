@@ -1,6 +1,7 @@
 import React from 'react';
 import style from './User.module.css';
 import { Link } from "react-router-dom";
+import defaultPhoto from '../../../../assets/images/defaultPhoto.jpg';
 
 const User = (props) => {
     const follow = () => {
@@ -16,7 +17,7 @@ const User = (props) => {
             <div className={style.sideBarInfo}>
                 <div className={style.avatar}>
                     <Link to={`/profile/${props.userInfo.id}`} >
-                        <img src={props.userInfo.photos.small != null ? props.userInfo.photos.small : 'https://n1s1.hsmedia.ru/01/35/7f/01357f0e8f70d876c90cc0f5a681c6bb/620x429_1_02503db0df69f8beb9324bb72a99e23e@1200x831_0xac120003_12947200691611090922.jpg'} alt="avatar"/>
+                        <img src={props.userInfo.photos.small != null ? props.userInfo.photos.small : defaultPhoto} alt="avatar"/>
                     </Link>             
                 </div>
                 <div className={style.followButton}>

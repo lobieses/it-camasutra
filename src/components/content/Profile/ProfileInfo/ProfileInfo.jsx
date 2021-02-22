@@ -1,6 +1,8 @@
 import React from 'react';
 import style from './ProfileInfo.module.css';
+import  ProfileStatus from './ProfileStatus/ProfileStatus';
 import Preloader from '../../../common/preloader';
+import defaultPhoto from '../../../../assets/images/defaultPhoto.jpg';
 
 const ProfileInfo = (props) => {
     if(!props.profile) {
@@ -15,7 +17,7 @@ const ProfileInfo = (props) => {
             <div className={style.profile}>
                 <div className={style.sideInfo}>
                     <div className={style.profileAvatar}>
-                        <img src={props.profile.photos.large} alt="avatar"/>
+                        <img src={props.profile.photos.large ? props.profile.photos.large : defaultPhoto} alt="avatar"/>
                     </div>          
                     <div className={style.fullName}>
                         {props.profile.fullName}
@@ -23,8 +25,11 @@ const ProfileInfo = (props) => {
                 </div> 
                 <div className={style.otherInfo}>
                     <div className={style.status}>
-                        {props.profile.aboutMe}
+                        <ProfileStatus
+                            updateStatus={props.updateStatus}
+                            status={props.status}/>
                     </div>
+
                 </div>             
             </div>
         </div>
