@@ -1,0 +1,16 @@
+.form {
+    padding-bottom: 20px;
+}
+
+.form.error textarea {
+    transition: 0.3s all;
+    border: 2px solid red;
+}
+
+.form.error span {
+    color: red;
+}
+.formSummaryError {
+    transition: 0.3s all;
+    color: red;
+}

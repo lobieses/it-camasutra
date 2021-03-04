@@ -1,6 +1,5 @@
 import {profileAPI, usersAPI} from '../api/api';
 
-const UPDATE_TEXT_FOR_NEW_POST = 'UPDATE_TEXT_FOR_NEW_POST';
 const ADD_POST = 'ADD_POST';
 const SET_PROFILE = 'SET_PROFILE';
 const SET_STATUS = 'GET_STATUS';
@@ -10,8 +9,7 @@ let initialState = {
         {message: '1'},
         {message: '2'},
         {message: '3'},
-    ], 
-    textNewPost: '',
+    ],
     profile: null,
     status: null
 };
@@ -19,17 +17,10 @@ let initialState = {
 const profileReducer = (state = initialState, action) => {
     
     switch(action.type) {
-        case UPDATE_TEXT_FOR_NEW_POST: {
-            return {
-                ...state,
-                textNewPost: action.text
-            };
-        }           
         case ADD_POST: {
             return {
                 ...state,
-                posts: [...state.posts, {message: state.textNewPost}],
-                textNewPost: ''
+                posts: [...state.posts, {message: action.postText}],
             };
         }    
         case SET_PROFILE: {
@@ -49,8 +40,7 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
-export const updateTextForNewPost = (text) => ({type: UPDATE_TEXT_FOR_NEW_POST, text});
-export const addPost = () => ({type: ADD_POST});
+export const addPost = (postText) => ({type: ADD_POST, postText});
 export const setProfile = (profile) => ({type: SET_PROFILE, profile});
 export const setStatus = (status) => ({type: SET_STATUS, status});
 
@@ -64,7 +54,6 @@ export const getUserProfile = (userId) => (dispatch) => {
 export const getStatus = (userId) => (dispatch) => {
     profileAPI.getStatus(userId)
         .then(status => {
-            debugger
             dispatch(setStatus(status));
         });
 }

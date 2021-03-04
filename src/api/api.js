@@ -60,8 +60,17 @@ export const authMe = {
             .then(response => {
                 return response.data;
             });
+    },
+    login(email, password, rememberMe) {
+        return instance.post(`auth/login`, {email, password, rememberMe})
+            .then(response => {
+               return response.data;
+            });
+    },
+    logout() {
+        return instance.post(`auth/logout`)
+            .then(response => {
+                return response.data;
+            });
     }
 };
-
-
-

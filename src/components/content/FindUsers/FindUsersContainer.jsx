@@ -6,7 +6,7 @@ import {
         follow,
         unFollow
     } from '../../../Redux/findUsers-reducer';
-import Preloader from '../../common/preloader';
+import Preloader from '../../common/Preloader/preloader';
 
 class FindUsersContainer extends React.Component {
     componentDidMount() {

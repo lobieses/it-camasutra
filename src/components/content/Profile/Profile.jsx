@@ -11,11 +11,9 @@ const Profile = (props) => {
                 profile={props.profile}
                 status={props.status}
             />
-            <MyPosts 
-                onChangePostText={props.updateTextForNewPost}
+            <MyPosts
                 onAddPost={props.addPost}
                 posts={props.posts}
-                postText={props.textNewPost} 
             />
         </div>
     )

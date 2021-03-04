@@ -1,7 +1,6 @@
 import React from 'react';
 import Profile from './Profile';
 import {
-        updateTextForNewPost,
         addPost,
         getUserProfile,
         getStatus,
@@ -22,11 +21,9 @@ class ProfileContainer extends React.Component {
     render() {
         return <Profile
             updateStatus={this.props.updateStatus}
-            updateTextForNewPost={this.props.updateTextForNewPost}
             addPost={this.props.addPost}
             profile={this.props.profile}
             status={this.props.status}
-            textNewPost={this.props.textNewPost}
             posts={this.props.posts}
         />
     }
@@ -36,14 +33,12 @@ const mapStateToProps = (state) => {
     return {
         profile: state.profilePage.profile,
         status: state.profilePage.status,
-        textNewPost: state.profilePage.textNewPost,
         posts: state.profilePage.posts
-
     }
 }
 
 export default compose(
-    connect(mapStateToProps, {updateTextForNewPost, addPost, getUserProfile, getStatus, updateStatus}),
+    connect(mapStateToProps, {addPost, getUserProfile, getStatus, updateStatus}),
     withRouter,
     withAuthRedirect
 )(ProfileContainer)
