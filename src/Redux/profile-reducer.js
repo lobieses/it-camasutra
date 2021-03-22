@@ -1,4 +1,4 @@
-import {profileAPI, usersAPI} from '../api/api';
+import {profileAPI} from '../api/api';
 
 const ADD_POST = 'ADD_POST';
 const SET_PROFILE = 'SET_PROFILE';
@@ -15,7 +15,6 @@ let initialState = {
 };
 
 const profileReducer = (state = initialState, action) => {
-    
     switch(action.type) {
         case ADD_POST: {
             return {
@@ -44,27 +43,21 @@ export const addPost = (postText) => ({type: ADD_POST, postText});
 export const setProfile = (profile) => ({type: SET_PROFILE, profile});
 export const setStatus = (status) => ({type: SET_STATUS, status});
 
-export const getUserProfile = (userId) => (dispatch) => {
-    usersAPI.getUserProfile(userId)
-        .then(profile => {
-            dispatch(setProfile(profile));
-        });
+export const getUserProfile = userId => async dispatch => {
+    let profile = await profileAPI.getUserProfile(userId);
+    dispatch(setProfile(profile));
 }
 
-export const getStatus = (userId) => (dispatch) => {
-    profileAPI.getStatus(userId)
-        .then(status => {
-            dispatch(setStatus(status));
-        });
+export const getStatus = userId => async dispatch => {
+    let status = await profileAPI.getStatus(userId);
+    dispatch(setStatus(status));
 }
 
-export const updateStatus = (status) => (dispatch) => {
-    profileAPI.updateStatus(status)
-        .then(response => {
-            if(response.resultCode === 0) {
-                dispatch(setStatus(status));
-            }
-        });
+export const updateStatus = status => async dispatch => {
+    let response = await profileAPI.updateStatus(status);
+    if(response.resultCode === 0) {
+        dispatch(setStatus(status));
+    }
 }
 
 export default profileReducer;

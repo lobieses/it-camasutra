@@ -7,11 +7,11 @@ import {Input} from '../../common/FormControls/FormControls';
 import {isEmail} from "../../../utils/validator/validator";
 import style from '../../common/FormControls/FormControls.module.css';
 
-const LoginForm = (props) => {
-    const hasSummaryError = props.error !== undefined;
+const LoginForm = ({error, handleSubmit}) => {
+    const hasSummaryError = error !== undefined;
 
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div>
                 <Field type="text" placeholder='Email' component={Input} name='email' validate={[isEmail]}/>
             </div>
@@ -23,7 +23,7 @@ const LoginForm = (props) => {
             </div>
             <div>
                 <span className={hasSummaryError ? style.formSummaryError : null}>
-                    {hasSummaryError ? props.error : ''}
+                    {hasSummaryError ? error : ''}
                 </span>
             </div>
             <div>
@@ -35,13 +35,13 @@ const LoginForm = (props) => {
 
 let LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
 
-const Login = (props) => {
+const Login = ({login, isAuth}) => {
     const onSubmit = (formData) => {
         const {email, password, rememberMe = false} = formData;
-        props.login(email, password, rememberMe)
+        login(email, password, rememberMe)
     }
 
-    if(props.isAuth) {
+    if(isAuth) {
        return <Redirect to={'/profile'} />
     }
 

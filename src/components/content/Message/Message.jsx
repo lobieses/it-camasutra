@@ -2,7 +2,6 @@ import React from 'react';
 import style from './Message.module.css';
 import Dialogs from './Dialogs/Dialogs';
 import Chat from './Chat/Chat';
-import {addMessage} from "../../../Redux/message-reducer";
 
 const Message = (props) => {
     return (

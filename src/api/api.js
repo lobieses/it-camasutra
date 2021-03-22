@@ -48,10 +48,6 @@ export const usersAPI = {
                 return response.data;
             });
     },
-    getUserProfile(id) {
-        console.error('ABOBA');
-        return profileAPI.getUserProfile((id));
-    }
 };
 
 export const authMe = {

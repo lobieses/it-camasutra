@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './ProfileInfo.module.css';
-import  ProfileStatus from './ProfileStatus/ProfileStatus';
+import  ProfileStatusWithHook from './ProfileStatus/ProfileStatusWithHook';
 import Preloader from '../../../common/Preloader/preloader';
 import defaultPhoto from '../../../../assets/images/defaultPhoto.jpg';
 
@@ -25,11 +25,10 @@ const ProfileInfo = (props) => {
                 </div> 
                 <div className={style.otherInfo}>
                     <div className={style.status}>
-                        <ProfileStatus
+                        <ProfileStatusWithHook
                             updateStatus={props.updateStatus}
                             status={props.status}/>
                     </div>
-
                 </div>             
             </div>
         </div>

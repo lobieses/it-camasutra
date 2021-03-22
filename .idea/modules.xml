@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/react-camasutra.iml" filepath="$PROJECT_DIR$/.idea/react-camasutra.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../../../git/react-way-of-samurai/.idea/react-way-of-samurai.iml" filepath="$PROJECT_DIR$/../../../../../git/react-way-of-samurai/.idea/react-way-of-samurai.iml" />
     </modules>
   </component>
 </project>

@@ -2,19 +2,26 @@ import React from 'react';
 import {connect} from 'react-redux';
 import FindUsers from './FindUsers';
 import {
-        getUsers,
+        requestUsers,
         follow,
         unFollow
     } from '../../../Redux/findUsers-reducer';
 import Preloader from '../../common/Preloader/preloader';
+import {
+    getFocusPage,
+    getFollowingInProgressUsers, getIsFetching,
+    getPageSize, getSuperUsers,
+    getTotalCounts,
+    getUsers
+} from "../../../Redux/user-selectors";
 
 class FindUsersContainer extends React.Component {
     componentDidMount() {
-        this.props.getUsers();
+        this.props.requestUsers();
     }
     
     onChangePage(page) {
-        this.props.getUsers(this.props.pageSize, page);
+        this.props.requestUsers(this.props.pageSize, page);
     }
 
     follow(id) {
@@ -27,8 +34,9 @@ class FindUsersContainer extends React.Component {
 
 
     render() {
+        console.log('USERS')
         return <>
-            {this.props.fetching
+            {this.props.isFetching
             ? <Preloader />
             : <FindUsers     
                 onChangePage={this.onChangePage.bind(this)}
@@ -48,18 +56,19 @@ class FindUsersContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        users: state.findUsersPage.users,
-        pageSize: state.findUsersPage.pageSize,
-        focusPage: state.findUsersPage.focusPage,
-        totalCounts: state.findUsersPage.totalCounts,
-        followingInProgressUsers: state.findUsersPage.followingInProgressUsers,
-        fetching: state.findUsersPage.isFetching
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        focusPage: getFocusPage(state),
+        totalCounts: getTotalCounts(state),
+        followingInProgressUsers: getFollowingInProgressUsers(state),
+        isFetching: getIsFetching(state),
+        superUsers: getSuperUsers(state)
     }
 }
 
 
 export default connect(mapStateToProps, {
-    getUsers,
+    requestUsers,
     follow,
     unFollow
 })(FindUsersContainer);

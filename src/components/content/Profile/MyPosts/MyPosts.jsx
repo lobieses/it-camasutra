@@ -26,8 +26,9 @@ const MyPostsForm = (props) => {
 const MyPostsReduxForm = reduxForm({form: 'myPosts'})(MyPostsForm)
 
 const MyPosts = (props) => {
+    console.log('sd')
     const onSubmit = (formData) => {
-        props.onAddPost(formData.postText)
+        props.addPost(formData.postText)
     }
 
     const posts = props.posts.map((post,index) => {

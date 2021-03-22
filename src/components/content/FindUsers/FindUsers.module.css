@@ -2,30 +2,9 @@
     font-size: 35px;
     color: rgb(96, 97, 161);
     margin-left: 10px;
-    
 }
 .users {
     width: 80%;
     margin: 0 auto;
 }
-.pages {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 auto;
-    width: 30%;
-    margin-top: 30px;
-}
-.pages span {
-    font-size: 25px;
-    color: rgb(96, 97, 161);
-    transition: 0.3s all;
-    cursor: pointer; 
-    width: 40px;
-    text-align: center;
-}
-.pages span:hover {
-    color: rgb(134, 221, 146);
-}
-.pages span.focusPage {
-    color: rgb(134, 221, 146);
-}
+
