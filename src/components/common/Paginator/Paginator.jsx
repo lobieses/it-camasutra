@@ -2,6 +2,7 @@ import React from 'react';
 import style from './Paginator.module.css';
 
 const Paginator = (props) => {
+
     const checkNumRange = (page, totalPage) => {
         if(totalPage > page && page > 0) {
             return true
