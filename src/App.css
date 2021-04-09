@@ -1,6 +1,7 @@
 body {
     padding: 20px;
     background-image: url(assets/images/constructive_bg_01.jpg);
+    background-repeat: no-repeat;
 }
 .App {
     display: grid;

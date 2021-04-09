@@ -26,8 +26,26 @@ export const profileAPI = {
             .then(response => {
                 return response.data;
             });
+    },
+    updatePhoto(file) {
+        const formData = new FormData();
+        formData.append("image", file);
+
+        return instance.put(`profile/photo`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }).then(response => {
+           return response.data;
+        });
+    },
+    updateProfileData(profile) {
+        return instance.put(`profile/`, profile)
+            .then(response => {
+                return response.data;
+            });
     }
-}
+};
 
 export const usersAPI = {
     getUsers(size = 3, page = 1) {

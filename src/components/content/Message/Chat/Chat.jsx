@@ -1,20 +1,16 @@
 import React from 'react';
 import MessageElem from './MessageElem/MessageElem'
-import style from './Chat.module.css';
-import {Field, reduxForm} from "redux-form";
+import {reduxForm} from "redux-form";
+import {createField, Textarea} from "../../../common/FormControls/FormControls";
 import {required, maxLength} from "../../../../utils/validator/validator";
-import {Textarea} from "../../../common/FormControls/FormControls";
+import style from './Chat.module.css';
 
 const maxLengthForValidator = maxLength(5);
 
 const SendChatForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <Field placeholder='Enter your message...'
-                   component={Textarea}
-                   name='chatText'
-                   validate={[required, maxLengthForValidator]}
-            />
+            {createField(Textarea, 'chatText', [required, maxLengthForValidator], {placeholder: 'Enter your message...'})}
             <button>Send</button>
         </form>
     )

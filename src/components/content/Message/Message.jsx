@@ -15,9 +15,9 @@ const Message = (props) => {
                 /> 
             </div>   
             <div className={style.chat}>
-                <Chat 
-                    chatMessages={props.messagePage.chat}
+                <Chat
                     onAddMessage={props.addMessage}
+                    chatMessages={props.messagePage.chat}
                 />
             </div>        
         </div>

@@ -6,7 +6,7 @@ import ProfileContainer from './components/content/Profile/ProfileContainer';
 import Login from './components/content/Login/Login';
 import Preloader from './components/common/Preloader/preloader';
 import {
-    BrowserRouter as Router,
+    HashRouter,
     Route,
   } from "react-router-dom";
 import {Component} from "react";
@@ -55,12 +55,12 @@ let AppContainer = compose(
     connect(mapStateToProps, {initializeApp})
 )(App)
 
-const SamuraiJsApp = (props) => {
-    return <Router >
+const SamuraiJsApp = () => {
+    return <HashRouter >
         <Provider store={store}>
             <AppContainer />
         </Provider>
-    </Router>
+    </HashRouter>
 }
 
 export default SamuraiJsApp

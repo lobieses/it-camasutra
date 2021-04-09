@@ -1,6 +1,9 @@
 .profile {
-    display: flex; 
-    margin-left: 10px; 
+    display: flex;
+    margin-left: 10px;
+}
+.profile form {
+    display: inherit;
 }
 .profile .sideInfo {
     width: 150px;
@@ -15,8 +18,9 @@
 }
 .sideInfo .fullName {
     text-align: center;
-    color: rgb(96, 97, 161);
-    font-size: 20px;
+}
+.sideInfo .fullName input {
+    width: 80%;
 }
 .otherInfo {
     width: 100%;
