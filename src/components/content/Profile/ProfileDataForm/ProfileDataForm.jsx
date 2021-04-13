@@ -5,6 +5,8 @@ import defaultPhoto from "../../../../assets/images/defaultPhoto.jpg";
 import ProfileStatusWithHook from "../ProfileInfo/ProfileStatus/ProfileStatusWithHook";
 import style from './ProfileDataForm.module.css';
 
+//В ABOUT ME ЗДЕЛАТЬ ОГРАНИЧЕНИЕ ИБО ВЕРСТКА РОЗТЯГУЕТСЯ ОТ ЭТОГО ДО ПИЗДЫ
+
 const ProfileDataForm = (props) => {
     return (
         <div className={style.profile}>
@@ -25,8 +27,6 @@ const ProfileDataForm = (props) => {
                             onUpdateStatus={props.onUpdateStatus}
                             status={props.status}/>
                     </div>
-
-                    {<b>{props.error}</b>}
 
                     <div>
                         <b>about me:</b>

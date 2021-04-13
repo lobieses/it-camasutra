@@ -79,7 +79,16 @@ export const updatePhoto = file => async dispatch => {
 export const updateProfileData = obj => async dispatch => {
     let response = await profileAPI.updateProfileData(obj);
     if(response.resultCode !== 0) {
-        dispatch(stopSubmit('editProfile', {_error: response.messages}));
+        let objForStopSubmit = {};
+
+        const regular = new RegExp(/^(.+)\(Contacts->(.+)\)/g);
+        for(let error of response.messages) {
+            error.replace(regular, (found, errorText, nameField) => {
+                objForStopSubmit[nameField.toLowerCase()] = errorText;
+            });
+        }
+
+        dispatch(stopSubmit('editProfile', {'contacts': objForStopSubmit}));
         return Promise.reject();
     }
 }

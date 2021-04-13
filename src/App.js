@@ -32,8 +32,12 @@ class App extends Component {
 
         return (
             <div className="App">
-                <HeaderContainer />
-                <SideBar/>
+                <div className='header'>
+                    <HeaderContainer />
+                </div>
+                <div className='side'>
+                    <SideBar/>
+                </div>
                 <div className='content'>
                     <Route path='/profile/:userId?' render={() =>
                         <ProfileContainer/>}/>

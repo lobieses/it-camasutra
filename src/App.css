@@ -10,9 +10,17 @@ body {
     'header header'
     'side-bar content';
 
-    grid-template-rows: 60px 600px;
+    grid-template-rows: 60px auto;
     grid-template-columns: 2fr 10fr;
     grid-gap: 10px; 
+}
+.header {
+    grid-area: header;
+}
+
+.side {
+    grid-area: side-bar;
+    height: 600px;
 }
 .content {
     grid-area: content;

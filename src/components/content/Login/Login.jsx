@@ -7,7 +7,7 @@ import {Input} from '../../common/FormControls/FormControls';
 import {isEmail} from "../../../utils/validator/validator";
 import style from '../../common/FormControls/FormControls.module.css';
 
-const LoginForm = ({error, handleSubmit}) => {
+const LoginForm = ({error, handleSubmit, captchaUrl}) => {
     const hasSummaryError = error !== undefined;
 
     return (
@@ -21,6 +21,12 @@ const LoginForm = ({error, handleSubmit}) => {
             <div>
                 <Field type="checkbox" placeholder='RememberMe' component='input' name='rememberMe'/> rememberMe
             </div>
+            {captchaUrl &&
+                <div>
+                    <img src={captchaUrl} alt="captchaImage"/>
+                    <Field placeholder='Symbols from image' component='input' name='captcha'/>
+                </div>
+            }
             <div>
                 <span className={hasSummaryError ? style.formSummaryError : null}>
                     {hasSummaryError ? error : ''}
@@ -35,10 +41,10 @@ const LoginForm = ({error, handleSubmit}) => {
 
 let LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
 
-const Login = ({login, isAuth}) => {
+const Login = ({login, isAuth, captchaUrl}) => {
     const onSubmit = (formData) => {
-        const {email, password, rememberMe = false} = formData;
-        login(email, password, rememberMe)
+        const {email, password, rememberMe = false, captcha = null} = formData;
+        login(email, password, rememberMe, captcha);
     }
 
     if(isAuth) {
@@ -49,14 +55,18 @@ const Login = ({login, isAuth}) => {
     return (
         <div>
             <h1>Login</h1>
-            <LoginReduxForm onSubmit={onSubmit}/>
+            <LoginReduxForm
+                onSubmit={onSubmit}
+                captchaUrl={captchaUrl}
+            />
         </div>
 
     )
 }
 
 const mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    captchaUrl: state.auth.captchaUrl
 });
 
 const connectLogin = connect(mapStateToProps, {login})(Login);
