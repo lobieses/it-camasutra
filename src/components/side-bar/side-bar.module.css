@@ -1,11 +1,4 @@
-.sideBar {
-    background-color: rgba(0, 0, 0, 0.5);
-    border: 1px solid rgb(90, 93, 138);
-    box-shadow: 0px 0px 3px 1px rgb(90, 93, 138);
-    height: 100%;
-}
-
-.sideBarBlock {
+.container {
     width: 80%;
     margin: 0 auto;
 }
@@ -24,21 +17,31 @@
 
 .sideBarElems a {
     text-decoration: none;
-    font-size: 30px;
-    color: rgb(96, 97, 161);
+    font-size: 35px;
+    color: #C9C9C9;
     transition: all 0.2s;
 }
 
 .sideBarElems a:hover {
-    color: rgb(218, 27, 202);   
+    color: #EA3953;
 }
 
-.sideBarElems a:active {
-    color: #000;
+.sideBarElems .active {
+    color: #EA3953;
 }
 
-.active {
-    color: rgb(255, 255, 255);
+@media (max-width: 900px) {
+    .sideBarElems a {
+        font-size: 25px;
+    }
+
+
+}
+
+@media (max-width: 550px) {
+    .sideBarElems a {
+        font-size: 16px;
+    }
 }
 
 

@@ -11,10 +11,13 @@ const Profile = (props) => {
         setEditMode(toggle);
     }
 
-    let onSubmit = (data) => {
-        props.onUpdateProfileData(data).then(() => {
-            onChangeEditMode(false);
+    let onSubmit = ({status='', ...data}) => {
+        Promise.all([
+            props.onUpdateProfileData(data),
+            props.onUpdateStatus(status)
+        ]).then(() => {
             props.onRefreshProfile();
+            onChangeEditMode(false);
         });
     }
 
@@ -27,20 +30,16 @@ const Profile = (props) => {
                     profile={props.profile}
                     status={props.status}
                     initialValues={props.profile}
+                    onUpdatePhoto={props.onUpdatePhoto}
+                    onUpdateStatus={props.onUpdateStatus}
                   />
-                : <div>
-                    <ProfileInfo
-                        onUpdatePhoto={props.onUpdatePhoto}
-                        onUpdateStatus={props.onUpdateStatus}
-                        onChangeEditMode={onChangeEditMode.bind(true)}
-                        profile={props.profile}
-                        status={props.status}
-                        isOwner={props.isOwner}
-                    />
-                    <MyPostsContainer />
-                  </div>
+                : <ProfileInfo
+                    onChangeEditMode={onChangeEditMode.bind(true)}
+                    profile={props.profile}
+                    status={props.status}
+                    isOwner={props.isOwner}
+                  />
             }
-
         </div>
     )
 }

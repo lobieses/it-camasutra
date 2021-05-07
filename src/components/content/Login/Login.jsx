@@ -5,37 +5,43 @@ import {login} from '../../../Redux/auth-reducer';
 import {Redirect} from "react-router-dom";
 import {Input} from '../../common/FormControls/FormControls';
 import {isEmail} from "../../../utils/validator/validator";
-import style from '../../common/FormControls/FormControls.module.css';
+import styleForReduxFormErrors from '../../common/FormControls/FormControls.module.css';
+import style from './Login.module.css';
 
 const LoginForm = ({error, handleSubmit, captchaUrl}) => {
     const hasSummaryError = error !== undefined;
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <Field type="text" placeholder='Email' component={Input} name='email' validate={[isEmail]}/>
-            </div>
-            <div>
-                <Field type="password" placeholder='Password' component={Input} name='password'/>
-            </div>
-            <div>
-                <Field type="checkbox" placeholder='RememberMe' component='input' name='rememberMe'/> rememberMe
-            </div>
-            {captchaUrl &&
-                <div>
-                    <img src={captchaUrl} alt="captchaImage"/>
+        <div>
+            <form onSubmit={handleSubmit}>
+                <div className={style.emailField}>
+                    <Field type="text" placeholder='Email' component={Input} name='email' validate={[isEmail]}/>
+                </div>
+                <div className={style.passwordField}>
+                    <Field type="password" placeholder='Password' component={Input} name='password'/>
+                </div>
+                <div className={style.rememberMeField}>
+                    <Field type="checkbox" placeholder='RememberMe' component='input' name='rememberMe'/><span>rememberMe</span>
+                </div>
+                {captchaUrl &&
+                <div className={style.captchaField}>
+                    <div className={style.captchaImage}>
+                        <img src={captchaUrl} alt="captchaImage"/>
+                    </div>
                     <Field placeholder='Symbols from image' component='input' name='captcha'/>
                 </div>
-            }
-            <div>
-                <span className={hasSummaryError ? style.formSummaryError : null}>
-                    {hasSummaryError ? error : ''}
-                </span>
-            </div>
-            <div>
-                <button>Login</button>
-            </div>
-        </form>
+                }
+                <div className={style.summaryError}>
+                    <span className={hasSummaryError ? styleForReduxFormErrors.formSummaryError : null}>
+                        {hasSummaryError ? error : ''}
+                    </span>
+                </div>
+                <div className={style.submitButton}>
+                    <button>Login</button>
+                </div>
+            </form>
+        </div>
+
     )
 }
 
@@ -53,8 +59,8 @@ const Login = ({login, isAuth, captchaUrl}) => {
 
 
     return (
-        <div>
-            <h1>Login</h1>
+        <div className={style.container}>
+            <h1 className={style.namePage}>Login</h1>
             <LoginReduxForm
                 onSubmit={onSubmit}
                 captchaUrl={captchaUrl}

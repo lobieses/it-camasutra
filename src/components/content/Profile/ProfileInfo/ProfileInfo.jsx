@@ -1,8 +1,6 @@
 import React from 'react';
 import style from './ProfileInfo.module.css';
-import  ProfileStatusWithHook from './ProfileStatus/ProfileStatusWithHook';
-import ChangePhoto from './ChangePhoto/ChangePhoto';
-import ProfileData from './ProfileData/ProfileDatat';
+import ProfileData from './ProfileData/ProfileData';
 import Preloader from '../../../common/Preloader/preloader';
 import defaultPhoto from '../../../../assets/images/defaultPhoto.jpg';
 
@@ -14,41 +12,42 @@ const ProfileInfo = (props) => {
 
     return (
         <div className={style.profile}>
-            <div className={style.sideInfo}>
-
-                <div className={style.profileAvatar}>
+            <div className={style.avatar}>
+                <div>
                     <img src={props.profile.photos.large ? props.profile.photos.large : defaultPhoto} alt="avatar"/>
                 </div>
+            </div>
+
+
+            <div className={style.profileData}>
+
                 <div className={style.fullName}>
                     {props.profile.fullName}
                 </div>
 
-            </div>
-            <div className={style.otherInfo}>
 
                 <div className={style.status}>
-                    <ProfileStatusWithHook
-                        onUpdateStatus={props.onUpdateStatus}
-                        status={props.status}/>
-                </div>
-
-                <div>
-                    {props.isOwner
-                        ? <ChangePhoto
-                            onUpdatePhoto={props.onUpdatePhoto}
-                        />
-                        : null
+                    {props.status
+                     ? <p>{props.status}</p>
+                     : <p>-----</p>
                     }
                 </div>
 
+
                 <div>
                     <ProfileData
-                        onChangeEditMode={props.onChangeEditMode}
                         profile={props.profile}
-                        isOwner={props.isOwner}
                     />
                 </div>
 
+
+            </div>
+
+            <div className={style.changeEditModButton}>
+                {props.isOwner
+                    ? <button onClick={props.onChangeEditMode}>change my profile</button>
+                    : null
+                }
             </div>
         </div>
     )

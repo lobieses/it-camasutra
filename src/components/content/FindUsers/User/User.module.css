@@ -2,25 +2,43 @@
     display: flex;
     margin-top: 50px;   
 }
-.avatar {
+
+.sideBarInfo {
+    min-width: 90px;
+}
+
+.sideBarInfo .avatar {
     text-align: center;
     margin-bottom: 5px;
     cursor: pointer;
 }
-.avatar a img {
+
+.sideBarInfo .avatar a img {
     width: 60px;
     height: 60px;
     border-radius: 50px;
     
 }
+
+.followButton {
+    text-align: center;
+}
+
 .followButton button {
-    width: 80px;
+    font-family: 'Noto Serif', serif;
     height: 27px;
-    background: rgb(146, 207, 146);
+    background: #EA3953;
     border: none;
+    font-size: 17px;
     border-radius: 10px;
     cursor: pointer;
+    transition: 0.3s all;
 }
+
+.followButton button:hover {
+    background: #C9C9C9;
+}
+
 .blockInfo {
     width: 100%;
     display: grid;
@@ -28,17 +46,69 @@
     'fullName'
     'status';
     grid-template-columns: 10fr 150px;
-    color: rgb(112, 113, 187);
     margin-left: 30px;
 }
+
 .fullName {
     grid-area: fullName;
     font-size: 25px;
-    font-weight: 450;
+    font-weight: 400;
 }
+
+.fullName a {
+    text-decoration: none;
+    color: #C9C9C9;
+}
+
 .status {
     grid-area: status;
 }
+
 .status div {
     margin-top: 27px;
+    color: #C9C9C9;
+}
+
+@media (max-width: 900px) {
+    .avatar a img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .followButton button {
+        height: 23px;
+        font-size: 13px;
+    }
+
+    .blockInfo {
+        margin-left: 20px;
+    }
+
+    .fullName {
+        font-size: 20px;
+    }
+
+    .followButton button:hover {
+        background: #EA3953;
+    }
+}
+
+@media (max-width: 550px) {
+    .avatar a img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .followButton button {
+        height: 20px;
+        font-size: 10px;
+    }
+
+    .blockInfo {
+        margin-left: 10px;
+    }
+
+    .fullName {
+        font-size: 16px;
+    }
 }

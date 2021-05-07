@@ -12,7 +12,6 @@ const FormControls = ({meta, ...props}) => {
             <div>
                 <span>{hasError && meta.error}</span>
             </div>
-
         </div>
 
     )

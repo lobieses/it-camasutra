@@ -5,13 +5,15 @@ import {createField, Textarea} from "../../../common/FormControls/FormControls";
 import {required, maxLength} from "../../../../utils/validator/validator";
 import style from './Chat.module.css';
 
-const maxLengthForValidator = maxLength(5);
+const maxLengthForValidator = maxLength(100);
 
 const SendChatForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             {createField(Textarea, 'chatText', [required, maxLengthForValidator], {placeholder: 'Enter your message...'})}
-            <button>Send</button>
+            <div className={style.sendButton}>
+                <button>Send</button>
+            </div>
         </form>
     )
 }
@@ -28,8 +30,8 @@ const Messages = (props) => {
     });
 
     return (
-        <div>
-            <div>
+        <div className={props.dialogsMenuIsOpen ? style.menuOpen : ''}>
+            <div className={style.messageField}>
                 {chatMessages}
             </div>
             <div className={style.sendBlock}>

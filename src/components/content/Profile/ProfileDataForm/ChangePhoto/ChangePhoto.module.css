@@ -1,0 +1,40 @@
+.changePhotoButton input {
+    display: none;
+}
+
+.changePhotoButton label {
+    display: inline-block;
+    width: 100%;
+    max-width: 150px;
+    font-family: 'Noto Serif', serif;
+    color: black;
+    background: #EA3953;
+    font-size: 13px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: 0.3s all;
+}
+
+.changePhotoButton label:hover {
+    background: #C9C9C9;
+}
+
+@media (max-width: 900px) {
+    .changePhotoButton label {
+        font-size: 10px;
+        width: 80%;
+        min-width: 70px;
+    }
+
+    .changePhotoButton label:hover {
+        background: #EA3953;
+    }
+}
+
+@media (max-width: 550px) {
+    .changePhotoButton label {
+        font-size: 8px;
+        width: 30%
+    }
+}
+

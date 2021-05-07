@@ -1,0 +1,39 @@
+.profileData .mainInfo {
+    width: 100%;
+    word-wrap: break-word;
+    margin-top: 5px;
+}
+.profileData div b {
+    color: #EA3953;
+    font-weight: normal;
+    font-size: 18px;
+}
+.profileData div p {
+    display: inline;
+    margin-left: 5px;
+    font-weight: normal;
+    text-align: justify;
+    overflow-wrap: anywhere;
+}
+
+.contacts {
+    width: 100%;
+}
+
+@media (max-width: 900px) {
+    .profileData div b {
+        font-size: 10px;
+    }
+    .profileData div p {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 550px) {
+    .profileData div b {
+        font-size: 8px;
+    }
+    .profileData div p {
+        font-size: 8px;
+    }
+}

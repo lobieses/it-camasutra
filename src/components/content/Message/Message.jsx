@@ -5,19 +5,19 @@ import Chat from './Chat/Chat';
 
 const Message = (props) => {
     return (
-        <div className={style.messageBlock}> 
-            <div className={style.nameBlock}>
-                Dialogs                            
-            </div>
+        <div className={style.message}>
             <div className={style.dialogs}>
-                <Dialogs 
+                <Dialogs
+                    toggleStateDialogsMenu={props.toggleStateDialogsMenu}
                     dialogNames={props.messagePage.dialogNames}
+                    dialogsMenuIsOpen={props.dialogsMenuIsOpen}
                 /> 
             </div>   
             <div className={style.chat}>
                 <Chat
                     onAddMessage={props.addMessage}
                     chatMessages={props.messagePage.chat}
+                    dialogsMenuIsOpen={props.dialogsMenuIsOpen}
                 />
             </div>        
         </div>

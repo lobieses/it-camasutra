@@ -1,12 +1,110 @@
-.dialogsBlock {
-    border: 1px solid rgb(228, 27, 211);
-    border-width: 0px 1px 0px 0px;
+.dialogsElems {
+    width: 70%;
+    margin: 0 auto;
+    height: 400px;
+    overflow: scroll;
+    overflow-x: visible;
+    overflow-wrap: anywhere;
+    transition: 0.3s all;
+    background-color: #232428;
+    padding: 10px;
 }
 
-.dialogs {
-    width: 90%;
-    margin: 0 auto; 
+.dialogsElems::-webkit-scrollbar {
+    background-color: #232428;
+    width: 7px;
 }
 
+.dialogsElems::-webkit-scrollbar-thumb {
+    background-color: #EA3953;
+    border-radius: 5px;
+}
+
+.contactsMenu {
+    display: none;
+    z-index: 10;
+}
+
+@media (max-width: 900px) {
+    .dialogsElems::-webkit-scrollbar {
+        width: 4px;
+    }
+}
+
+@media (max-width: 660px) {
+    .dialogs {
+        position: relative;
+    }
+
+    .dialogsElems {
+        position: absolute;
+        right: -1000px;
+    }
+
+    .dialogsElems.active {
+        left: -213px;
+        right: 0;
+        width: 200px;
+        height: 400px;
+    }
+
+    .contactsMenu {
+        display: block;
+        position: absolute;
+        left: -30px;
+        width: 30px;
+        height: 20px;
+    }
+
+    .contactsMenu:before,
+    .contactsMenu:after {
+        content: '';
+        background-color: #ffffff;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        transition: 0.3s all;
+    }
+
+    .contactsMenu:before {
+        top: 0;
+    }
+
+    .contactsMenu:after {
+        bottom: 0;
+    }
+
+    .contactsMenu.active span {
+        transform: scale(0);
+        transition: 0.3s all;
+    }
+
+    .contactsMenu.active:before {
+        transform: rotate(45deg);
+        top: 9px;
+    }
+
+    .contactsMenu.active:after {
+        transform: rotate(-45deg);
+        bottom: 9px;
+    }
+
+    .contactsMenu span {
+        background-color: #fff;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        top: 9px;
+    }
+}
+
+@media (max-width: 340px) {
+    .dialogsElems.active {
+        left: -185px;
+        right: 0;
+        width: 170px;
+        height: 400px;
+    }
+}
 
 

@@ -1,32 +1,160 @@
 .profile {
-    display: flex;
-    margin-left: 10px;
+    color: #EA3953;
+    font-family: 'Noto Serif', serif;
+    padding: 5px 0;
 }
-.profile form {
-    display: inherit;
+
+.profile span {
+    font-size: 18px;
 }
-.profile .sideInfo {
-    width: 150px;
+
+.container {
+    display: grid;
+    grid-template-areas:
+    'fullNameAndStatus avatar'
+    'otherInfo avatar'
+    'saveButton saveButton';
+    grid-template-columns: 10fr minmax(138px, 4fr);
 }
-.sideInfo .profileAvatar{
+
+.avatar {
+    grid-area: avatar;
     text-align: center;
 }
-.sideInfo .profileAvatar img {
+
+.avatar .avatarPhoto img {
     width: 150px;
     height: 150px;
     border-radius: 40%;
 }
-.sideInfo .fullName {
+
+.fullNameAndStatus {
+    grid-area: fullNameAndStatus;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     text-align: center;
 }
-.sideInfo .fullName input {
-    width: 80%;
+
+.fullNameAndStatus .fullName input, .fullNameAndStatus .status input {
+    font-size: 15px;
+    padding: 3px;
 }
+
+.fullNameAndStatus .fullName input {
+    text-align: center;
+}
+
 .otherInfo {
-    width: 100%;
+    grid-area: otherInfo;
+    width: 90%;
+    margin: 0 auto;
 }
-.otherInfo .status {
-    font-size: 25px;
-    margin-left: 10px;
-    color: rgb(96, 97, 161);
+
+.otherInfo textarea {
+    width: 50%;
+    height: 80px;
+    resize: none;
+    min-width: 200px;
 }
+
+.contacts input {
+    width: 40%;
+    padding: 3px;
+    min-width: 200px;
+}
+
+.saveButton {
+    grid-area: saveButton;
+    text-align: center;
+}
+
+.saveButton button{
+    font-family: 'Noto Serif', serif;
+    width: 20%;
+    max-width: 200px;
+    min-width: 50px;
+    height: 27px;
+    background: #EA3953;
+    border: none;
+    font-size: 17px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: 0.3s all;
+}
+
+.saveButton button:hover {
+    background: #C9C9C9;
+}
+
+.fieldInfo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 900px) {
+    .avatar .avatarPhoto img {
+        width: 75px;
+        height: 75px;
+    }
+
+    .avatar .changePhotoButton {
+        width: 70%;
+        margin: 0 auto;
+    }
+
+    .fullNameAndStatus .fullName input, .fullNameAndStatus .status input {
+        font-size: 10px;
+        padding: 3px;
+    }
+
+    .profile span {
+        font-size: 10px;
+    }
+
+    .otherInfo textarea {
+        height: 50px;
+        font-size: 10px;
+        min-width: 150px;
+    }
+
+    .contacts input {
+        width: 50%;
+        padding: 3px;
+        font-size: 10px;
+        min-width: 150px;
+    }
+
+    .saveButton button{
+        height: 20px;
+        font-size: 13px;
+    }
+
+    .saveButton button:hover {
+        background: #EA3953;
+    }
+}
+
+@media (max-width: 550px) {
+    .container {
+        grid-template-areas:
+            'avatar'
+            'fullNameAndStatus'
+            'otherInfo'
+            'saveButton';
+        justify-self: center;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+
+    .fieldInfo {
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .avatar {
+        margin-bottom: 30px;
+    }
+}
+

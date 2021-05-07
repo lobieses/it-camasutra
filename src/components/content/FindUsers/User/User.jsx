@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './User.module.css';
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import defaultPhoto from '../../../../assets/images/defaultPhoto.jpg';
 
 const User = (props) => {
@@ -35,8 +35,11 @@ const User = (props) => {
             </div>
             <div className={style.blockInfo}>
                 <div className={style.fullName}>
-                    {props.userInfo.name}
+                    <Link to={`/profile/${props.userInfo.id}`} >
+                        {props.userInfo.name}
+                    </Link>
                 </div>
+
                 <div className={style.status}>
                     <div>{props.userInfo.status}</div>
                 </div>

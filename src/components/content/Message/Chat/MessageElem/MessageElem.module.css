@@ -1,6 +1,5 @@
-.chat {
+.messageElem {
     display: flex;
-    margin-top: 10px;
 }
 
 .blockInfo .avatar {
@@ -11,20 +10,58 @@
 .blockInfo .avatar img {
     width: 60px;
     height: 60px;
-    border-radius: 50px;
+    border-radius: 40%;
 }
 
 .blockInfo .name {
     text-align: center;
     margin: 0 auto;
     font-size: 20px;
-    color: rgb(135, 137, 221);
+    color: #EA3953;
 }
 
-.message {                   /* КОСТЫЛЬ */
-    display: table-cell;
-    vertical-align: middle;
-    margin-left: 20px;
+.message {
+    font-family: 'Noto Serif', serif;
+    display: flex;
+    align-items: center;
+    width: 50%;
+    height: 60px;
+    color: #C9C9C9;
     font-size: 15px;
-    color: rgb(135, 137, 221);
+    margin-left: 10px;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+    .blockInfo .avatar img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .blockInfo .name {
+        font-size: 13px;
+    }
+
+    .message {
+        width: 100%;
+        font-size: 12px;
+        height: 45px;
+    }
+}
+
+@media (max-width: 550px) {
+    .blockInfo .avatar img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .blockInfo .name {
+        font-size: 12px;
+    }
+
+    .message {
+        width: 100%;
+        font-size: 11px;
+        height: 35px;
+    }
 }

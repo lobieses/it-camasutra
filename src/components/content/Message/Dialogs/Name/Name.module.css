@@ -1,22 +1,22 @@
-a {
+.name a {
     display: block;
     margin-top: 10px;
     text-decoration: none;
     font-size: 30px;
-    color: rgb(96, 97, 161);
-    transition: all 0.2s;
+    color: #C9C9C9;
+    transition: all 0.3s;
 }
 
-a:hover {
-    color: rgb(218, 27, 202);   
+.name a:hover, .name .active{
+    color: #EA3953;
 }
 
-.dotInName {
-    margin-right: 10px;
-    color: rgb(156, 156, 156); 
-    transition: 0.6s all;
-}
+@media (max-width: 900px) {
+    .name a {
+        font-size: 20px;
+    }
 
-a:hover > .dotInName {
-    color: rgb(66, 138, 255);
+    .name a:hover{
+        color: #C9C9C9;
+    }
 }

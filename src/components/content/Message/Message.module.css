@@ -1,18 +1,15 @@
-.messageBlock {
+.message {
     display: grid;
-    grid-template-areas: 
-    'name name'
+    grid-template-areas:
     'dialogs chat';
-    grid-template-columns: 1fr 3fr;
-    grid-template-rows: 45px 1fr;
-    grid-column-gap: 30px;
+    grid-template-columns: 4fr 10fr;
+    padding: 8px;
+    overflow: hidden;
 }
 
-.nameBlock {
-    grid-area: name;
-    font-size: 30px;
-    color: rgb(96, 97, 161);
-    margin-left: 10px;
+.namePage {
+    font-size: 35px;
+    color: #C9C9C9;
 }
 .chat {
     grid-area: chat;
@@ -20,4 +17,13 @@
 
 .dialogs {
     grid-area: dialogs;
+    z-index: 1;
+}
+
+@media (max-width: 660px) {
+    .message {
+        grid-template-areas:
+            'chat dialogs';
+        grid-template-columns: 1fr auto;
+    }
 }

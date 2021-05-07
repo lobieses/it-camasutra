@@ -1,0 +1,19 @@
+.status div {
+    font-size: 16px;
+    color: #C9C9C9;
+    text-align: center;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+@media (max-width: 900px) {
+    .status div {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 550px) {
+    .status div {
+        font-size: 7px;
+    }
+}

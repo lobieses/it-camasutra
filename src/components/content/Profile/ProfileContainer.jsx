@@ -6,7 +6,7 @@ import {
         updateStatus,
         updatePhoto,
         updateProfileData
-    } from './../../../Redux/profile-reducer';
+    } from '../../../Redux/profile-reducer';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import  {withAuthRedirect} from '../../../hoc/withAuthRedirect';

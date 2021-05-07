@@ -1,4 +1,5 @@
 import React from 'react';
+import style from './ChangePhoto.module.css';
 
 const ChangePhoto = (props) => {
     const onChangePhoto = (event) => {
@@ -7,8 +8,9 @@ const ChangePhoto = (props) => {
         }
     }
     return (
-        <div>
-            <input type="file" onChange={onChangePhoto}/>
+        <div className={style.changePhotoButton}>
+            <input type="file" id='upload' onChange={onChangePhoto}/>
+            <label for='upload'>Upload photo</label>
         </div>
     )
 }

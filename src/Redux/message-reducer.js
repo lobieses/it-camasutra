@@ -3,9 +3,13 @@ const ADD_MESSAGE = 'ADD-MESSAGE';
 
 let initialState = {
     dialogNames: [
-        {id: 1, name: 'Сережа'},
-        {id: 2, name: 'Катя'},
-        {id: 3, name: 'Эва'},
+        {id: 1, name: 'Serega'},
+        {id: 2, name: 'Kate'},
+        {id: 3, name: 'Eva'},
+        {id: 4, name: 'Garilla'},
+        {id: 5, name: 'Dodik'},
+        {id: 6, name: 'Aboba Abobavich Abobkin'},
+        {id: 7, name: 'Dynia Mirnaya'}
     ],
     chat: [
         {name: 'name', message: 'hi'},

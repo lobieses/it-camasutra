@@ -2,20 +2,68 @@
     display: flex;
     justify-content: space-between;
     margin: 0 auto;
-    width: 30%;
+    width: 40%;
+    max-width: 500px;
     margin-top: 30px;
 }
+
 .pages span {
     font-size: 25px;
-    color: rgb(96, 97, 161);
+    color: #C9C9C9;
     transition: 0.3s all;
     cursor: pointer;
     width: 40px;
     text-align: center;
 }
-.pages span:hover {
-    color: rgb(134, 221, 146);
+
+.pages span:hover, .pages svg:hover, span.focusPage {
+    color: #EA3953;
 }
-.pages span.focusPage {
-    color: rgb(134, 221, 146);
+
+.pages svg {
+    color: #C9C9C9;
+    cursor: pointer;
+    transition: 0.3s all;
 }
+
+@media (max-width: 900px) {
+    .pages {
+        width: 50%;
+    }
+
+    .pages span {
+        font-size: 20px;
+    }
+
+    .pages svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .pages span:hover, .pages svg:hover {
+        color: #C9C9C9;
+    }
+}
+
+@media (max-width: 800px) {
+    .pages {
+        width: 60%;
+    }
+}
+
+@media (max-width: 550px) {
+    .pages {
+        width: 70%;
+    }
+
+    .pages span {
+        font-size: 15px;
+    }
+
+    .pages svg {
+        width: 15px;
+        height: 15px;
+    }
+}
+
+

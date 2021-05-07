@@ -1,15 +1,82 @@
-.sendBlock textarea {
-    width: 40%;
-    height: 65px;
-    resize: none;
-    background: rgb(235, 235, 235);
-    border: none;
+.menuOpen {
+    opacity: 0.3;
+    transition: 0.3s all;
 }
 
-.sendBlock button {
-    display: block;
-    width: 130px;
-    height: 35px;
-    background: rgb(146, 207, 146);
+.messageField {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow: scroll;
+    overflow-x: visible;
+    height: 300px;
+}
+
+.messageField::-webkit-scrollbar {
+    background-color: #232428;
+    width: 7px;
+}
+
+.messageField::-webkit-scrollbar-thumb {
+    background-color: #EA3953;
+    border-radius: 5px;
+}
+
+.sendBlock textarea {
+    width: 50%;
+    max-width: 300px;
+    min-width: 130px;
+    height: 65px;
+    resize: none;
+}
+
+.sendBlock .sendButton {
+    width: 20%;
+}
+
+.sendBlock .sendButton button {
+    font-family: 'Noto Serif', serif;
+    width: 100%;
+    height: 25px;
+    max-width: 120px;
+    min-width: 85px;
+    background: #EA3953;
     border: none;
-}  
+    font-size: 18px;
+    border-radius: 7px;
+    cursor: pointer;
+    margin: 0 auto;
+    transition: 0.3s all;
+}
+
+.sendBlock .sendButton button:hover {
+    background: #C9C9C9;
+}
+
+@media (max-width: 900px) {
+    .sendBlock textarea {
+        font-size: 10px;
+        height: 45px;
+    }
+
+    .sendBlock .sendButton button {
+        height: 20px;
+        font-size: 13px;
+        min-width: 50px;
+    }
+
+    .sendBlock .sendButton button:hover {
+        background: #EA3953;
+    }
+
+    .messageField::-webkit-scrollbar {
+        width: 4px;
+    }
+}
+
+@media (max-width: 660px) {
+    .sendBlock {
+        display: flex;
+        justify-content: space-around
+    }
+}

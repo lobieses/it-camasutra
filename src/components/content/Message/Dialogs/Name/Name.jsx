@@ -3,8 +3,16 @@ import style from './Name.module.css';
 import { NavLink } from "react-router-dom";
 
 const Name = (props) => {
+    const onSelectNameIfMenuIsOpen = () => {
+        if(props.dialogsMenuIsOpen === true) {
+            props.toggleStateDialogsMenu();
+        }
+    }
+
     return (
-        <NavLink to={'/message/' + props.id}><span className={style.dotInName}>•</span>{props.name}</NavLink>
+        <div className={style.name} onClick={onSelectNameIfMenuIsOpen}>
+            <NavLink activeClassName={style.active} to={'/message/' + props.id}>{props.name}</NavLink>
+        </div>
     )
 }
 

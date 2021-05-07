@@ -14,19 +14,16 @@ const FindUsers = (props) => {
     });
 
     return (
-        <div> 
-            <div className={style.namePage}>
-                Users
-            </div>
-            <div className={style.users}>            
-                {createUsers}     
+        <div >
+            <div className={style.users}>
+                {createUsers}
             </div>
             <div>
                 <Paginator
+                    onChangePage={props.onChangePage}
                     totalCounts={props.totalCounts}
                     pageSize={props.pageSize}
                     focusPage={props.focusPage}
-                    onChangePage={props.onChangePage}
                 />
             </div>
         </div>

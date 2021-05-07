@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "http://lobieses.github.io/it-camasutra",
   "dependencies": {
+    "@material-ui/icons": "^4.11.2",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.6.0",

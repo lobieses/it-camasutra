@@ -1,0 +1,34 @@
+.contacts {
+    margin: 0 auto;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.contactElem {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.contactElem img {
+    width: 40px;
+    height: 40px;
+
+}
+
+@media (max-width: 900px) {
+    .contactElem img {
+        width: 25px;
+        height: 25px;
+    }
+
+    .contacts {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 550px) {
+    .contactElem img {
+        width: 20px;
+        height: 20px;
+    }
+}

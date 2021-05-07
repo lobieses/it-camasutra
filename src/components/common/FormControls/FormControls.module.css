@@ -1,14 +1,12 @@
-.form {
-    padding-bottom: 20px;
-}
-
 .form.error textarea {
     transition: 0.3s all;
     border: 2px solid red;
 }
 
 .form.error span {
+    transition: 0.3s all;
     color: red;
+    font-size: 17px;
 }
 .formSummaryError {
     transition: 0.3s all;
