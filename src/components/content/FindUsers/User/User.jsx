@@ -20,18 +20,22 @@ const User = (props) => {
                         <img src={props.userInfo.photos.small != null ? props.userInfo.photos.small : defaultPhoto} alt="avatar"/>
                     </Link>             
                 </div>
-                <div className={style.followButton}>
-                    {props.userInfo.followed 
-                        ? <button
-                            onClick={unfollow}
-                            disabled={props.followingInProgressUsers.some(id => id === props.userInfo.id)}
-                        >Unfollow</button>
-                        : <button
-                            onClick={follow}
-                            disabled={props.followingInProgressUsers.some(id => id === props.userInfo.id)}
-                        >Follow</button>
-                    }
-                </div>
+                {props.isAuth
+                  ? <div className={style.followButton}>
+                        {props.userInfo.followed
+                            ? <button
+                                onClick={unfollow}
+                                disabled={props.followingInProgressUsers.some(id => id === props.userInfo.id)}
+                            >Unfollow</button>
+                            : <button
+                                onClick={follow}
+                                disabled={props.followingInProgressUsers.some(id => id === props.userInfo.id)}
+                            >Follow</button>
+                        }
+                    </div>
+                : ''
+                }
+
             </div>
             <div className={style.blockInfo}>
                 <div className={style.fullName}>

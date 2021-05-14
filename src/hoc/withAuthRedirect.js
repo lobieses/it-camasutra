@@ -9,12 +9,13 @@ const mapStateToPropsForRedirect = (state) => ({
 export const withAuthRedirect = (Component) => {
      class RedirectComponent extends React.Component {
          render() {
-             if(!this.props.isAuth) return <Redirect to={'/auth'} />
+             //the second condition need so that redirect from profile was be only at owner
+             if(!this.props.isAuth && this.props.match.params.userId === undefined) return <Redirect to={'/auth'} />
              return <Component {...this.props}/>
          }
      }
 
-     const connectedAuthRedicrectComponent = connect(mapStateToPropsForRedirect)(RedirectComponent);
+     const connectedAuthRedirectComponent = connect(mapStateToPropsForRedirect)(RedirectComponent);
 
-     return connectedAuthRedicrectComponent;
+     return connectedAuthRedirectComponent;
 }

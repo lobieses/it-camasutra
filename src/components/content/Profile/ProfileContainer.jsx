@@ -1,23 +1,23 @@
 import React from 'react';
 import Profile from './Profile';
 import {
-        getUserProfile,
-        getStatus,
+        getUserData,
+        updateUserData,
         updateStatus,
         updatePhoto,
-        updateProfileData
+        updateProfileData,
     } from '../../../Redux/profile-reducer';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import  {withAuthRedirect} from '../../../hoc/withAuthRedirect';
 import {compose} from 'redux';
+import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
+import Preloader from '../../common/Preloader/preloader';
 
 class ProfileContainer extends React.Component {
     refreshProfile() {
         let id = this.props.match.params.userId;
         if(!this.props.match.params.userId) id = this.props.authorizedUserId;
-        this.props.getUserProfile(id);
-        this.props.getStatus(id);
+        this.props.getUserData(id);
     }
 
     componentDidMount() {
@@ -31,15 +31,20 @@ class ProfileContainer extends React.Component {
     }
 
     render() {
-        return <Profile
-            onUpdatePhoto={this.props.updatePhoto}
-            onUpdateStatus={this.props.updateStatus}
-            onUpdateProfileData={this.props.updateProfileData}
-            onRefreshProfile={this.refreshProfile.bind(this)}
-            isOwner={!this.props.match.params.userId}
-            profile={this.props.profile}
-            status={this.props.status}
-        />
+        if(this.props.isFetching || !this.props.profile) {
+            return  <Preloader />
+        } else {
+            return <Profile
+                onUpdatePhoto={this.props.updatePhoto}
+                onUpdateProfileData={this.props.updateUserData}
+                onRefreshProfile={this.refreshProfile.bind(this)}
+                isOwner={!this.props.match.params.userId}
+                isFetching={this.props.isFetching}
+                profile={this.props.profile}
+                status={this.props.status}
+            />
+        }
+
     }
 }
 
@@ -47,12 +52,13 @@ const mapStateToProps = (state) => {
     return {
         profile: state.profilePage.profile,
         status: state.profilePage.status,
-        authorizedUserId: state.auth.userId
+        isFetching: state.profilePage.isFetching,
+        authorizedUserId: state.auth.userId,
     }
 }
 
 export default compose(
-    connect(mapStateToProps, {getUserProfile, getStatus, updateStatus, updatePhoto, updateProfileData}),
+    connect(mapStateToProps, {updateUserData, updatePhoto ,getUserData}),
     withRouter,
     withAuthRedirect
 )(ProfileContainer)

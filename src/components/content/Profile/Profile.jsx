@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import style from './Profile.module.css';
-import MyPostsContainer from './MyPosts/MyPostContainer';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-import ProfileDataForm from "./ProfileDataForm/ProfileDataForm";
+import ChangeProfileInfo from "./ProfileDataForm/ChangeProfileInfo";
 
 const Profile = (props) => {
     let [editMod, setEditMode] = useState(false);
@@ -12,12 +11,10 @@ const Profile = (props) => {
     }
 
     let onSubmit = ({status='', ...data}) => {
-        Promise.all([
-            props.onUpdateProfileData(data),
-            props.onUpdateStatus(status)
-        ]).then(() => {
-            props.onRefreshProfile();
-            onChangeEditMode(false);
+        props.onUpdateProfileData(status, data)
+            .then(() => {
+                props.onRefreshProfile();
+                onChangeEditMode(false);
         });
     }
 
@@ -25,18 +22,18 @@ const Profile = (props) => {
     return (
         <div className={style.content}>
             {editMod
-                ? <ProfileDataForm
+                ? <ChangeProfileInfo
+                    onUpdatePhoto={props.onUpdatePhoto}
                     onSubmit={onSubmit}
                     profile={props.profile}
                     status={props.status}
                     initialValues={props.profile}
-                    onUpdatePhoto={props.onUpdatePhoto}
-                    onUpdateStatus={props.onUpdateStatus}
                   />
                 : <ProfileInfo
                     onChangeEditMode={onChangeEditMode.bind(true)}
                     profile={props.profile}
                     status={props.status}
+                    isFetching={props.isFetching}
                     isOwner={props.isOwner}
                   />
             }

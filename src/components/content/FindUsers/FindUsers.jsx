@@ -4,19 +4,20 @@ import User from './User/User';
 import Paginator from "../../common/Paginator/Paginator";
 
 const FindUsers = (props) => {
-    const createUsers = props.users.map(info => {
+    const Users = props.users.map(info => {
         return <User key={info.id}
             userInfo={info}
             onFollow={props.onFollow}
             onUnFollow={props.onUnFollow}
             followingInProgressUsers={props.followingInProgressUsers}
+            isAuth={props.isAuth}
         />
     });
 
     return (
         <div >
             <div className={style.users}>
-                {createUsers}
+                {Users}
             </div>
             <div>
                 <Paginator

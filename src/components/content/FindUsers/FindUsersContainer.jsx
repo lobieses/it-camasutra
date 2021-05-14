@@ -7,13 +7,6 @@ import {
         unFollow
     } from '../../../Redux/findUsers-reducer';
 import Preloader from '../../common/Preloader/preloader';
-import {
-    getFocusPage,
-    getFollowingInProgressUsers, getIsFetching,
-    getPageSize, getSuperUsers,
-    getTotalCounts,
-    getUsers
-} from "../../../Redux/user-selectors";
 
 class FindUsersContainer extends React.Component {
     componentDidMount() {
@@ -46,6 +39,7 @@ class FindUsersContainer extends React.Component {
                 pageSize={this.props.pageSize}
                 focusPage={this.props.focusPage}
                 followingInProgressUsers={this.props.followingInProgressUsers}
+                isAuth={this.props.isAuth}
              />
             }
         </>
@@ -55,20 +49,16 @@ class FindUsersContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        users: getUsers(state),
-        pageSize: getPageSize(state),
-        focusPage: getFocusPage(state),
-        totalCounts: getTotalCounts(state),
-        followingInProgressUsers: getFollowingInProgressUsers(state),
-        isFetching: getIsFetching(state),
-        superUsers: getSuperUsers(state)
+        users: state.findUsersPage.users,
+        pageSize: state.findUsersPage.pageSize,
+        focusPage: state.findUsersPage.focusPage,
+        totalCounts: state.findUsersPage.totalCounts,
+        followingInProgressUsers: state.findUsersPage.followingInProgressUsers,
+        isFetching: state.findUsersPage.isFetching,
+        isAuth: state.auth.isAuth
     }
 }
 
 
-export default connect(mapStateToProps, {
-    requestUsers,
-    follow,
-    unFollow
-})(FindUsersContainer);
+export default connect(mapStateToProps, {requestUsers, follow, unFollow})(FindUsersContainer);
 

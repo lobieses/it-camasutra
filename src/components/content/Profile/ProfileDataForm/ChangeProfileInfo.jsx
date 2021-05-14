@@ -2,11 +2,10 @@ import React from 'react';
 import {reduxForm} from "redux-form";
 import {createField, Input, Textarea} from "../../../common/FormControls/FormControls";
 import defaultPhoto from "../../../../assets/images/defaultPhoto.jpg";
-import style from './ProfileDataForm.module.css';
+import style from './ChangeProfileInfo.module.css';
 import ChangePhoto from "./ChangePhoto/ChangePhoto";
 
-const ProfileDataForm = (props) => {
-
+const ChangeProfileInfo = (props) => {
     return (
         <div className={style.profile}>
             <form onSubmit={props.handleSubmit}>
@@ -38,12 +37,10 @@ const ProfileDataForm = (props) => {
                             <span>looking for a job</span>
                             {createField(Input, 'lookingForAJob', [], {type: 'checkbox'})}
                         </div>
-
                         <div className={style.fieldInfo}>
                             <span>looking for a job description</span>
                             {createField(Textarea, 'lookingForAJobDescription', [], {placeholder: 'looking for a job description'})}
                         </div>
-
                         <div className={style.contacts}>
                             <div>
                                 {Object.keys(props.profile.contacts).map(key => {
@@ -54,7 +51,6 @@ const ProfileDataForm = (props) => {
                                     )
                                 })}
                             </div>
-
                         </div>
                     </div>
                     <div className={style.saveButton}>
@@ -67,6 +63,6 @@ const ProfileDataForm = (props) => {
     )
 }
 
-let ProfileDataFormReduxForm = reduxForm({form: 'editProfile'})(ProfileDataForm);
+let ChangeProfileInfoReduxForm = reduxForm({form: 'editProfile'})(ChangeProfileInfo);
 
-export default ProfileDataFormReduxForm;
+export default ChangeProfileInfoReduxForm;

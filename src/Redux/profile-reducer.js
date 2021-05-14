@@ -1,32 +1,22 @@
 import {profileAPI} from '../api/api';
 import {stopSubmit} from "redux-form";
 
-const ADD_POST = 'ADD_POST';
 const SET_PROFILE = 'SET_PROFILE';
 const SET_STATUS = 'GET_STATUS';
 const SAVE_PHOTO = 'SAVE_PHOTO';
+const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
 
 let initialState = {
-    posts: [
-        {message: '1'},
-        {message: '2'},
-        {message: '3'},
-    ],
     profile: null,
-    status: null
+    status: null,
+    isFetching: false
 };
 
 const profileReducer = (state = initialState, action) => {
     switch(action.type) {
-        case ADD_POST: {
-            return {
-                ...state,
-                posts: [...state.posts, {message: action.postText}],
-            };
-        }    
         case SET_PROFILE: {
             return {
-                ...state, 
+                ...state,
                 profile: action.profile
             };
         }
@@ -42,15 +32,27 @@ const profileReducer = (state = initialState, action) => {
                 profile: {...state.profile, photos: action.photos}
             }
         }
+        case TOGGLE_FETCHING: {
+            return  {
+                ...state,
+                isFetching: action.isFetching
+            }
+        }
         default: 
             return state;
     }
 }
 
-export const addPost = (postText) => ({type: ADD_POST, postText});
 export const setProfile = (profile) => ({type: SET_PROFILE, profile});
 export const setStatus = (status) => ({type: SET_STATUS, status});
-const saveLargeAndSmallPhotos = (photos) => ({type: SAVE_PHOTO, photos})
+export const saveLargeAndSmallPhotos = (photos) => ({type: SAVE_PHOTO, photos});
+export const toggleFetching = (isFetching) => ({type: TOGGLE_FETCHING, isFetching});
+
+export const getUserData = userId => async dispatch => {
+    dispatch(toggleFetching(true));
+    await Promise.all([dispatch(getUserProfile(userId)), dispatch(getStatus(userId))]);
+    dispatch(toggleFetching(false));
+}
 
 export const getUserProfile = userId => async dispatch => {
     let profile = await profileAPI.getUserProfile(userId);
@@ -62,17 +64,17 @@ export const getStatus = userId => async dispatch => {
     dispatch(setStatus(status));
 }
 
+export const updateUserData = (status, obj) => async dispatch => {
+
+    dispatch(toggleFetching(true));
+    await Promise.all([dispatch(updateStatus(status)), dispatch(updateProfileData(obj))]);
+    dispatch(toggleFetching(false));
+}
+
 export const updateStatus = status => async dispatch => {
     let response = await profileAPI.updateStatus(status);
     if(response.resultCode === 0) {
         dispatch(setStatus(status));
-    }
-}
-
-export const updatePhoto = file => async dispatch => {
-    let response = await profileAPI.updatePhoto(file);
-    if(response.resultCode === 0) {
-        dispatch(saveLargeAndSmallPhotos(response.data.photos));
     }
 }
 
@@ -91,6 +93,15 @@ export const updateProfileData = obj => async dispatch => {
         dispatch(stopSubmit('editProfile', {'contacts': objForStopSubmit}));
         return Promise.reject();
     }
+}
+
+export const updatePhoto = file => async dispatch => {
+    dispatch(toggleFetching(true));
+    let response = await profileAPI.updatePhoto(file);
+    if(response.resultCode === 0) {
+        dispatch(saveLargeAndSmallPhotos(response.data.photos));
+    }
+    dispatch(toggleFetching(false));
 }
 
 export default profileReducer;
