@@ -1,67 +1,89 @@
-import React from 'react';
-import {Field, reduxForm} from "redux-form";
+import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {login} from '../../../Redux/auth-reducer';
 import {Redirect} from "react-router-dom";
+
+import {Formik, Field, Form} from 'formik';
 import {Input} from '../../common/FormControls/FormControls';
-import {isEmail} from "../../../utils/validator/validator";
 import styleForReduxFormErrors from '../../common/FormControls/FormControls.module.css';
+
 import style from './Login.module.css';
 
-const LoginForm = ({error, handleSubmit, captchaUrl}) => {
-    const hasSummaryError = error !== undefined;
-
+const LoginFormFormik = (props) => {
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <div className={style.emailField}>
-                    <Field type="text" placeholder='Email' component={Input} name='email' validate={[isEmail]}/>
-                </div>
-                <div className={style.passwordField}>
-                    <Field type="password" placeholder='Password' component={Input} name='password'/>
-                </div>
-                <div className={style.rememberMeField}>
-                    <Field type="checkbox" placeholder='RememberMe' component='input' name='rememberMe'/><span>rememberMe</span>
-                </div>
-                {captchaUrl &&
-                <div className={style.captchaField}>
-                    <div className={style.captchaImage}>
-                        <img src={captchaUrl} alt="captchaImage"/>
-                    </div>
-                    <Field placeholder='Symbols from image' component='input' name='captcha'/>
-                </div>
-                }
-                <div className={style.summaryError}>
-                    <span className={hasSummaryError ? styleForReduxFormErrors.formSummaryError : null}>
-                        {hasSummaryError ? error : ''}
-                    </span>
-                </div>
-                <div className={style.submitButton}>
-                    <button>Login</button>
-                </div>
-            </form>
+            <Formik
+                initialValues={{
+                    email: '',
+                    password: '',
+                    rememberMe: false,
+                    captcha: null
+                }}
+                onSubmit={props.onSubmit}
+            >
+                {({
+                      handleSubmit,
+                  }) => (
+                    <Form onSubmit={handleSubmit}>
+                        <div className={style.emailField}>
+                            <Field name="email" placeholder="Email" component={Input}/>
+                        </div>
+                        <div className={style.passwordField}>
+                            <Field name="password" placeholder="Password"  type="password"component={Input}/>
+                        </div>
+                        <div className={style.rememberMeField}>
+                            <Field name="rememberMe" placeholder="RememberMe" type="checkbox" component={Input}/>
+                            <span>rememberMe</span>
+                        </div>
+                        {props.captchaUrl &&
+                        <div className={style.captchaField}>
+                            <div className={style.captchaImage}>
+                                <img src={props.captchaUrl} alt="captchaImage"/>
+                            </div>
+                            <Field name="captcha" placeholder="Symbols from image" component={Input}/>
+                        </div>
+                        }
+                        <div className={style.summaryError}>
+                            <span
+                                className={props.hasError ? styleForReduxFormErrors.formSummaryError : null}>
+                                {props.hasError ? props.hasError : ''}
+                            </span>
+                        </div>
+                        <div className={style.submitButton}>
+                            <button type="submit">
+                                Send
+                            </button>
+                        </div>
+                    </Form>
+                )}
+            </Formik>
         </div>
-
     )
 }
 
-let LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
-
 const Login = ({login, isAuth, captchaUrl}) => {
+
+    const [hasError, setHasError] = useState(undefined);
+
     const onSubmit = (formData) => {
-        const {email, password, rememberMe = false, captcha = null} = formData;
-        login(email, password, rememberMe, captcha);
+        const {email, password, rememberMe, captcha} = formData;
+        login(email, password, rememberMe, captcha)
+            .then((hasErrors) => {
+                if(hasErrors) {
+                    setHasError(hasErrors);
+                }
+            });
     }
 
     if(isAuth) {
        return <Redirect to={'/profile'} />
     }
 
-
     return (
         <div className={style.container}>
             <h1 className={style.namePage}>Login</h1>
-            <LoginReduxForm
+            <LoginFormFormik
+                hasError={hasError}
                 onSubmit={onSubmit}
                 captchaUrl={captchaUrl}
             />

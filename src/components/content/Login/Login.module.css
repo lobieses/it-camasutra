@@ -26,6 +26,11 @@
     margin-top: 15px;
 }
 
+.rememberMeField {
+    display: flex;
+    justify-content: center;
+}
+
 .rememberMeField span {
     font-family: 'Noto Serif', serif;
     font-size: 17px;

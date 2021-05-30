@@ -1,39 +1,28 @@
 import style from './FormControls.module.css';
-import {Field} from "redux-form";
 import React from "react";
 
-const FormControls = ({meta, ...props}) => {
-    const hasError = meta.touched && meta.error;
+export const FormControls = ({ name, errors, status = {},...props }) => {
     return (
-        <div className={style.form + ' ' + (hasError ? style.error : null)}>
+        <div className={style.form + ' ' + ((errors[name] || status[name]) ? style.error : undefined)}>
             <div>
                 {props.children}
             </div>
             <div>
-                <span>{hasError && meta.error}</span>
+                <p>{errors[name]}</p>
+                <p>{status[name]}</p>
             </div>
         </div>
-
     )
 }
 
-export const Textarea = (props) => {
-    const {input, meta, ...restProps} = props;
-    return <FormControls {...props}><textarea {...input} {...restProps} /></FormControls>
+export const Textarea = ({ field, form, ...props }) => {
+    return <FormControls {...form} name={field.name}><textarea {...field} {...props}/></FormControls>
 }
 
-export const Input = (props) => {
-    const {input, meta, ...restProps} = props;
-    return <FormControls {...props}><input {...input} {...restProps} /></FormControls>
+export const Input = ({ field, form, ...props }) => {
+    return <FormControls {...form} name={field.name}><input {...field} {...props}/></FormControls>
 }
 
-export const createField = (component, name, validators = [], props = {}) => {
-    return <Field component={component}
-           name={name}
-           validate={validators}
-           {...props}
-    />
-}
 
 
 

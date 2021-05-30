@@ -1,5 +1,5 @@
 import {profileAPI} from '../api/api';
-import {stopSubmit} from "redux-form";
+import {ResponseValidatorForUpdateProfileData} from "../utils/validator/validator";
 
 const SET_PROFILE = 'SET_PROFILE';
 const SET_STATUS = 'GET_STATUS';
@@ -65,10 +65,9 @@ export const getStatus = userId => async dispatch => {
 }
 
 export const updateUserData = (status, obj) => async dispatch => {
-
-    dispatch(toggleFetching(true));
+   // dispatch(toggleFetching(true));
     await Promise.all([dispatch(updateStatus(status)), dispatch(updateProfileData(obj))]);
-    dispatch(toggleFetching(false));
+   // dispatch(toggleFetching(false));
 }
 
 export const updateStatus = status => async dispatch => {
@@ -81,17 +80,9 @@ export const updateStatus = status => async dispatch => {
 export const updateProfileData = obj => async dispatch => {
     let response = await profileAPI.updateProfileData(obj);
     if(response.resultCode !== 0) {
-        let objForStopSubmit = {};
-
-        const regular = new RegExp(/^(.+)\(Contacts->(.+)\)/g);
-        for(let error of response.messages) {
-            error.replace(regular, (found, errorText, nameField) => {
-                objForStopSubmit[nameField.toLowerCase()] = errorText;
-            });
-        }
-
-        dispatch(stopSubmit('editProfile', {'contacts': objForStopSubmit}));
-        return Promise.reject();
+        let objForStopSubmit = ResponseValidatorForUpdateProfileData(response.messages);
+        dispatch(toggleFetching(false));
+        return Promise.reject(objForStopSubmit);
     }
 }
 

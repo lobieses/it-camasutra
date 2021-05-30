@@ -1,14 +1,38 @@
-.form.error textarea {
-    transition: 0.3s all;
+.form.error textarea, .form.error input{
     border: 2px solid red;
 }
 
-.form.error span {
+.form textarea:focus {
+    outline: none;
+}
+
+.form.error textarea,
+.form.error input,
+ form textarea:focus,
+ form input:focus
+{
+    transition: 0.3s all;
+}
+
+.form.error p {
     transition: 0.3s all;
     color: red;
     font-size: 17px;
 }
+
 .formSummaryError {
     transition: 0.3s all;
     color: red;
+}
+
+@media (max-width: 900px) {
+    .form.error p {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 550px) {
+    .form.error p {
+        font-size: 10px;
+    }
 }

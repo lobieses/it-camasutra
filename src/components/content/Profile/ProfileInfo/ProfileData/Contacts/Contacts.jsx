@@ -27,9 +27,8 @@ const Contacts = ({contacts}) => {
 
     const contactsField = Object.keys(contacts).map(key => {
         if(contacts[key] !== null && contacts[key] !== '') {
-
             return (
-                <div className={style.contactElem}>
+                <div className={style.contactElem} key={key}>
                     <a href={contacts[key]} target='_blank'>
                         <img src={socialNetworks[key]} alt={key} key={key}/>
                     </a>

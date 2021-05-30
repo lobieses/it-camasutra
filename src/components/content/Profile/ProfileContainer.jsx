@@ -3,9 +3,7 @@ import Profile from './Profile';
 import {
         getUserData,
         updateUserData,
-        updateStatus,
         updatePhoto,
-        updateProfileData,
     } from '../../../Redux/profile-reducer';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
@@ -14,10 +12,34 @@ import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 import Preloader from '../../common/Preloader/preloader';
 
 class ProfileContainer extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            editMode: false
+        };
+    }
+
+    onChangeEditMode(toggle) {
+        this.setState({
+            editMode: toggle
+        });
+    }
+
     refreshProfile() {
         let id = this.props.match.params.userId;
         if(!this.props.match.params.userId) id = this.props.authorizedUserId;
         this.props.getUserData(id);
+    }
+
+    onSubmitChangeProfileInfo({status='', ...data}, {setStatus}) {
+         this.props.updateUserData(status, data)
+            .then(() => {
+                this.refreshProfile();
+                this.onChangeEditMode(false);
+            })
+            .catch((obj) => {
+                setStatus(obj);
+            })
     }
 
     componentDidMount() {
@@ -25,7 +47,7 @@ class ProfileContainer extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if(prevProps.match.params.userId != this.props.match.params.userId) {
+        if(prevProps.match.params.userId !== this.props.match.params.userId) {
             this.refreshProfile();
         }
     }
@@ -38,6 +60,11 @@ class ProfileContainer extends React.Component {
                 onUpdatePhoto={this.props.updatePhoto}
                 onUpdateProfileData={this.props.updateUserData}
                 onRefreshProfile={this.refreshProfile.bind(this)}
+                onChangeEditMode={this.onChangeEditMode.bind(this)}
+
+                onSubmit={this.onSubmitChangeProfileInfo.bind(this)}
+
+                editMode={this.state.editMode}
                 isOwner={!this.props.match.params.userId}
                 isFetching={this.props.isFetching}
                 profile={this.props.profile}

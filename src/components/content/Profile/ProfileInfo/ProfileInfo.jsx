@@ -30,7 +30,7 @@ const ProfileInfo = (props) => {
             </div>
             <div className={style.changeEditModButton}>
                 {props.isOwner
-                    ? <button onClick={props.onChangeEditMode}>change my profile</button>
+                    ? <button onClick={() => props.onChangeEditMode(true)}>change my profile</button>
                     : null
                 }
             </div>

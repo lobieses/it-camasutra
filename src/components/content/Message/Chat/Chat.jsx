@@ -1,24 +1,37 @@
 import React from 'react';
 import MessageElem from './MessageElem/MessageElem'
-import {reduxForm} from "redux-form";
-import {createField, Textarea} from "../../../common/FormControls/FormControls";
-import {required, maxLength} from "../../../../utils/validator/validator";
+
+import {Formik, Field, Form} from 'formik';
+import {Textarea} from "../../../common/FormControls/FormControls";
+import {ValidateList, required, maxLength} from "../../../../utils/validator/validator";
+
 import style from './Chat.module.css';
 
-const maxLengthForValidator = maxLength(100);
+const maxLengthForValidator = maxLength(30);
+const ValidateListForForm = ValidateList([maxLengthForValidator, required]);
 
 const SendChatForm = (props) => {
     return (
-        <form onSubmit={props.handleSubmit}>
-            {createField(Textarea, 'chatText', [required, maxLengthForValidator], {placeholder: 'Enter your message...'})}
-            <div className={style.sendButton}>
-                <button>Send</button>
-            </div>
-        </form>
+        <Formik
+            initialValues={{chatText: ''}}
+            validate={ValidateListForForm}
+            onSubmit={props.onSubmit}
+        >
+            {({
+                handleSubmit,
+            }) => (
+                <Form onSubmit={handleSubmit}>
+                    <Field name="chatText" placeholder="Send your message..." component={Textarea}/>
+                    <div className={style.sendButton}>
+                        <button type="submit" >
+                            Send
+                        </button>
+                    </div>
+                </Form>
+            )}
+        </Formik>
     )
 }
-
-const SendChatReduxForm = reduxForm({form: 'message'})(SendChatForm);
 
 const Messages = (props) => {
     const onSubmit = (formData) => {
@@ -35,7 +48,7 @@ const Messages = (props) => {
                 {chatMessages}
             </div>
             <div className={style.sendBlock}>
-                <SendChatReduxForm onSubmit={onSubmit}/>
+                <SendChatForm onSubmit={onSubmit}/>
             </div>
         </div>
     )

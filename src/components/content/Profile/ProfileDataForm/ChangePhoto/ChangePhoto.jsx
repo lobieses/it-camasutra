@@ -10,7 +10,7 @@ const ChangePhoto = (props) => {
     return (
         <div className={style.changePhotoButton}>
             <input type="file" id='upload' onChange={onChangePhoto}/>
-            <label for='upload'>Upload photo</label>
+            <label htmlFor='upload'>Upload photo</label>
         </div>
     )
 }
