@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/it-camasutra/static/css/main.0152cc56.chunk.css",
-    "main.js": "/it-camasutra/static/js/main.cf54b02d.chunk.js",
-    "main.js.map": "/it-camasutra/static/js/main.cf54b02d.chunk.js.map",
-    "runtime-main.js": "/it-camasutra/static/js/runtime-main.ccf6f77b.js",
-    "runtime-main.js.map": "/it-camasutra/static/js/runtime-main.ccf6f77b.js.map",
+    "main.js": "/it-camasutra/static/js/main.4e3ee50e.chunk.js",
+    "main.js.map": "/it-camasutra/static/js/main.4e3ee50e.chunk.js.map",
+    "runtime-main.js": "/it-camasutra/static/js/runtime-main.f9943750.js",
+    "runtime-main.js.map": "/it-camasutra/static/js/runtime-main.f9943750.js.map",
     "static/js/2.0417617f.chunk.js": "/it-camasutra/static/js/2.0417617f.chunk.js",
     "static/js/2.0417617f.chunk.js.map": "/it-camasutra/static/js/2.0417617f.chunk.js.map",
     "static/css/3.73753ea7.chunk.css": "/it-camasutra/static/css/3.73753ea7.chunk.css",
-    "static/js/3.860448ee.chunk.js": "/it-camasutra/static/js/3.860448ee.chunk.js",
-    "static/js/3.860448ee.chunk.js.map": "/it-camasutra/static/js/3.860448ee.chunk.js.map",
+    "static/js/3.64099ffb.chunk.js": "/it-camasutra/static/js/3.64099ffb.chunk.js",
+    "static/js/3.64099ffb.chunk.js.map": "/it-camasutra/static/js/3.64099ffb.chunk.js.map",
     "static/js/4.43da351d.chunk.js": "/it-camasutra/static/js/4.43da351d.chunk.js",
     "static/js/4.43da351d.chunk.js.map": "/it-camasutra/static/js/4.43da351d.chunk.js.map",
     "static/css/5.aaf44ceb.chunk.css": "/it-camasutra/static/css/5.aaf44ceb.chunk.css",
-    "static/js/5.07c87dcf.chunk.js": "/it-camasutra/static/js/5.07c87dcf.chunk.js",
-    "static/js/5.07c87dcf.chunk.js.map": "/it-camasutra/static/js/5.07c87dcf.chunk.js.map",
+    "static/js/5.4cd1fdd0.chunk.js": "/it-camasutra/static/js/5.4cd1fdd0.chunk.js",
+    "static/js/5.4cd1fdd0.chunk.js.map": "/it-camasutra/static/js/5.4cd1fdd0.chunk.js.map",
     "static/js/6.02891bfa.chunk.js": "/it-camasutra/static/js/6.02891bfa.chunk.js",
     "static/js/6.02891bfa.chunk.js.map": "/it-camasutra/static/js/6.02891bfa.chunk.js.map",
     "index.html": "/it-camasutra/index.html",
@@ -23,6 +23,7 @@
     "static/css/main.0152cc56.chunk.css.map": "/it-camasutra/static/css/main.0152cc56.chunk.css.map",
     "static/js/2.0417617f.chunk.js.LICENSE.txt": "/it-camasutra/static/js/2.0417617f.chunk.js.LICENSE.txt",
     "static/js/4.43da351d.chunk.js.LICENSE.txt": "/it-camasutra/static/js/4.43da351d.chunk.js.LICENSE.txt",
+    "static/media/defaultPhoto.svg": "/it-camasutra/static/media/defaultPhoto.75fdf75c.svg",
     "static/media/facebook.2dd4dccb.svg": "/it-camasutra/static/media/facebook.2dd4dccb.svg",
     "static/media/github.e0df113a.svg": "/it-camasutra/static/media/github.e0df113a.svg",
     "static/media/instagram.c59b798d.svg": "/it-camasutra/static/media/instagram.c59b798d.svg",
@@ -34,9 +35,9 @@
     "static/media/youtube.5213846a.svg": "/it-camasutra/static/media/youtube.5213846a.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.ccf6f77b.js",
+    "static/js/runtime-main.f9943750.js",
     "static/js/2.0417617f.chunk.js",
     "static/css/main.0152cc56.chunk.css",
-    "static/js/main.cf54b02d.chunk.js"
+    "static/js/main.4e3ee50e.chunk.js"
   ]
 }
