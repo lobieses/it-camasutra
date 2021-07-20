@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './MessageElem.module.css';
-import defaultPhoto from '../../../../../assets/images/defaultPhoto.jpg';
+import defaultPhoto from '../../../../../assets/images/defaultPhoto.svg';
 
 const MessageElem = (props) => {
     return (

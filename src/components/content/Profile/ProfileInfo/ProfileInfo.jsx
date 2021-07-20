@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './ProfileInfo.module.css';
 import ProfileData from './ProfileData/ProfileData';
-import defaultPhoto from '../../../../assets/images/defaultPhoto.jpg';
+import defaultPhoto from '../../../../assets/images/defaultPhoto.svg';
 
 const ProfileInfo = (props) => {
     return (

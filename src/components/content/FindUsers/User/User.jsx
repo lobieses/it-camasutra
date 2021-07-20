@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './User.module.css';
 import {Link} from "react-router-dom";
-import defaultPhoto from '../../../../assets/images/defaultPhoto.jpg';
+import defaultPhoto from '../../../../assets/images/defaultPhoto.svg';
 
 const User = (props) => {
     const follow = () => {

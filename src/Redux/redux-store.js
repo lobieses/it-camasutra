@@ -7,7 +7,6 @@ import appReducer from "./app-reducer";
 import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-
 let reducers = combineReducers({
     profilePage: profileReducer,
     messagePage: messageReducer,
@@ -17,5 +16,5 @@ let reducers = combineReducers({
 });
 
 let store  = createStore(reducers, composeWithDevTools(applyMiddleware(thunkMiddleware)));
-    
+
 export default store;

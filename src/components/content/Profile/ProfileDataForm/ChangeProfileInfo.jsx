@@ -1,6 +1,6 @@
 import React from 'react';
 import {Input, Textarea} from "../../../common/FormControls/FormControls";
-import defaultPhoto from "../../../../assets/images/defaultPhoto.jpg";
+import defaultPhoto from "../../../../assets/images/defaultPhoto.svg";
 import style from './ChangeProfileInfo.module.css';
 import ChangePhoto from "./ChangePhoto/ChangePhoto";
 import {Field, Formik, Form} from "formik";
