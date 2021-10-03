@@ -14,7 +14,7 @@ import {connect} from "react-redux";
 import {initializeApp} from './Redux/app-reducer';
 import {compose} from "redux";
 import {Provider} from 'react-redux';
-import store from './Redux/redux-store';
+import store from './Redux/store';
 import {withSuspense} from './hoc/withSuspense';
 
 const FindUsersContainer = React.lazy(() => import('./components/content/FindUsers/FindUsersContainer'));

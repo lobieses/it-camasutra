@@ -4,14 +4,16 @@ const SET_USERS_DATA = 'SET_USERS_DATA';
 const SET_CAPTCHA_URL = 'SET_CAPTCHA_URL';
 
 let initialState = {
-    userId: null,
-    email: null,
-    login: null,
+    userId: null as null | number,
+    email: null as string | null,
+    login: null as string | null,
     isAuth: false,
-    captchaUrl: null
+    captchaUrl: null as string | null
 };
 
-const authReducer = (state = initialState, action) => {
+type initialStateType = typeof initialState;
+
+const authReducer = (state = initialState, action: any): initialStateType => {
     switch(action.type) {
         case SET_USERS_DATA: {
             return {
@@ -30,17 +32,31 @@ const authReducer = (state = initialState, action) => {
     }
 }
 
-export const setUserData = (userId, email, login, isAuth) => ({type: SET_USERS_DATA, data: {userId, email, login, isAuth}});
-export const setCaptchaUrl = (url) => ({type: SET_CAPTCHA_URL, url});
+type setUserDateType = {
+    type: typeof  SET_USERS_DATA,
+    data: {
+        userId: number | null,
+        email: string | null,
+        login: string | null,
+        isAuth: boolean
+    }
+}
+export const setUserData = (userId: number | null, email: string | null, login: string | null, isAuth: boolean): setUserDateType => ({type: SET_USERS_DATA, data: {userId, email, login, isAuth}});
 
-export const getAuthUserData = () => async dispatch => {
+type setCaptchaUrlType = {
+    type: typeof SET_CAPTCHA_URL,
+    url: string | null,
+}
+export const setCaptchaUrl = (url: string | null): setCaptchaUrlType => ({type: SET_CAPTCHA_URL, url});
+
+export const getAuthUserData = () => async (dispatch: any) => {
     const response = await authMe.me();
     if(response.resultCode === 0) {
         const {id, email, login} = response.data;
         dispatch(setUserData(id, email, login, true));
     }
 }
-export const login = (email, password, rememberMe = false, captcha = null) => async dispatch => {
+export const login = (email: string, password: string, rememberMe: boolean = false, captcha: string | null = null) => async (dispatch: any) => {
       const response = await authMe.login(email, password, rememberMe, captcha);
       if(response.resultCode === 0) {
           dispatch(getAuthUserData());
@@ -51,14 +67,14 @@ export const login = (email, password, rememberMe = false, captcha = null) => as
 
       }
 }
-export const logout = () => async dispatch => {
+export const logout = () => async (dispatch: any) => {
     const response = await authMe.logout();
     if(response.resultCode === 0) {
         dispatch(setUserData(null, null, null, false));
     }
 }
 
-export const getCaptchaUrl = () => async dispatch => {
+export const getCaptchaUrl = () => async (dispatch: any) => {
     const response = await security.getCaptchaUrl();
     dispatch(setCaptchaUrl(response.url));
 }
