@@ -1,4 +1,6 @@
 import {authMe, security} from '../api/api';
+import {ThunkAction} from "redux-thunk";
+import {GlobalStateType} from "./store";
 
 const SET_USERS_DATA = 'SET_USERS_DATA';
 const SET_CAPTCHA_URL = 'SET_CAPTCHA_URL';
@@ -13,7 +15,7 @@ let initialState = {
 
 type initialStateType = typeof initialState;
 
-const authReducer = (state = initialState, action: any): initialStateType => {
+const authReducer = (state = initialState, action: ActionsTypes): initialStateType => {
     switch(action.type) {
         case SET_USERS_DATA: {
             return {
@@ -32,6 +34,8 @@ const authReducer = (state = initialState, action: any): initialStateType => {
     }
 }
 
+type ActionsTypes = setUserDateType | setCaptchaUrlType
+
 type setUserDateType = {
     type: typeof  SET_USERS_DATA,
     data: {
@@ -49,34 +53,44 @@ type setCaptchaUrlType = {
 }
 export const setCaptchaUrl = (url: string | null): setCaptchaUrlType => ({type: SET_CAPTCHA_URL, url});
 
-export const getAuthUserData = () => async (dispatch: any) => {
-    const response = await authMe.me();
-    if(response.resultCode === 0) {
-        const {id, email, login} = response.data;
-        dispatch(setUserData(id, email, login, true));
+type ThunkType = ThunkAction<Promise<void>, GlobalStateType, unknown, ActionsTypes>
+
+export const getAuthUserData = (): ThunkType => {
+    return async (dispatch) => {
+        const response = await authMe.me();
+        if(response.resultCode === 0) {
+            const {id, email, login} = response.data;
+            dispatch(setUserData(id, email, login, true));
+        }
     }
 }
-export const login = (email: string, password: string, rememberMe: boolean = false, captcha: string | null = null) => async (dispatch: any) => {
-      const response = await authMe.login(email, password, rememberMe, captcha);
-      if(response.resultCode === 0) {
-          dispatch(getAuthUserData());
-          dispatch(setCaptchaUrl(null));
-      } else {
-          if(response.resultCode === 10) dispatch(getCaptchaUrl());
-          return response.messages.length > 0 ? response.messages[0] : 'some error';
+export const login = (email: string, password: string, rememberMe: boolean = false, captcha: string | null = null): ThunkType => {
+    return async (dispatch) => {
+        const response = await authMe.login(email, password, rememberMe, captcha);
+        if(response.resultCode === 0) {
+            dispatch(getAuthUserData());
+            dispatch(setCaptchaUrl(null));
+        } else {
+            if(response.resultCode === 10) dispatch(getCaptchaUrl());
+            return response.messages.length > 0 ? response.messages[0] : 'some error';
 
-      }
+        }
+    }
 }
-export const logout = () => async (dispatch: any) => {
-    const response = await authMe.logout();
-    if(response.resultCode === 0) {
-        dispatch(setUserData(null, null, null, false));
+export const logout = (): ThunkType => {
+    return async (dispatch) => {
+        const response = await authMe.logout();
+        if(response.resultCode === 0) {
+            dispatch(setUserData(null, null, null, false));
+        }
     }
 }
 
-export const getCaptchaUrl = () => async (dispatch: any) => {
-    const response = await security.getCaptchaUrl();
-    dispatch(setCaptchaUrl(response.url));
+export const getCaptchaUrl = (): ThunkType => {
+    return async (dispatch) => {
+        const response = await security.getCaptchaUrl();
+        dispatch(setCaptchaUrl(response.url));
+    }
 }
 
 export default authReducer;

@@ -1,9 +1,18 @@
-import React from 'react';
+import React, {FC} from 'react';
 import style from './User.module.css';
 import {Link} from "react-router-dom";
 import defaultPhoto from '../../../../assets/images/defaultPhoto.svg';
+import {userType} from "../../../../types/types";
 
-const User = (props) => {
+type PropsType = {
+    userInfo: userType,
+    followingInProgressUsers: Array<number>,
+    isAuth: boolean,
+    onFollow: (id: number) => void,
+    onUnFollow: (id: number) => void
+}
+
+const User: FC<PropsType> = (props) => {
     const follow = () => {
         props.onFollow(props.userInfo.id);
     }

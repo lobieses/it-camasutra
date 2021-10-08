@@ -1,9 +1,17 @@
-import React from 'react';
+import React, {FC} from 'react';
 import style from './Message.module.css';
 import Dialogs from './Dialogs/Dialogs';
 import Chat from './Chat/Chat';
+import {initialStateType} from "../../../Redux/message-reducer";
 
-const Message = (props) => {
+type PropsType = {
+    messagePage: initialStateType,
+    dialogsMenuIsOpen: boolean,
+    addMessage: (messageText: string) => void,
+    toggleStateDialogsMenu: () => void
+}
+
+const Message: FC<PropsType> = (props) => {
     return (
         <div className={style.message}>
             <div className={style.dialogs}>

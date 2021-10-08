@@ -7,21 +7,25 @@ import {
         unFollow
     } from '../../../Redux/findUsers-reducer';
 import Preloader from '../../common/Preloader/preloader';
+import {GlobalStateType} from "../../../Redux/store";
+import {userType} from "../../../types/types";
 
-class FindUsersContainer extends React.Component {
+type PropsType = MapStateToPropsType & MapDispatchToPropsType
+
+class FindUsersContainer extends React.Component<PropsType> {
     componentDidMount() {
-        this.props.requestUsers();
+        this.props.requestUsers(this.props.pageSize);
     }
     
-    onChangePage(page) {
+    onChangePage(page: number) {
         this.props.requestUsers(this.props.pageSize, page);
     }
 
-    follow(id) {
+    follow(id: number) {
         this.props.follow(id);
     }
 
-    unFollow(id) {
+    unFollow(id: number) {
         this.props.unFollow(id);
     }
 
@@ -47,7 +51,24 @@ class FindUsersContainer extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
+type MapStateToPropsType = {
+    users: Array<userType>,
+    pageSize: number,
+    focusPage: number,
+    totalCounts: number,
+    followingInProgressUsers: Array<number>,
+    isFetching: boolean,
+    isAuth: boolean
+}
+
+type MapDispatchToPropsType = {
+    requestUsers: (pageSize: number, currentPage?: number) => any
+    follow: (id: number) => any
+    unFollow: (id: number) => any
+}
+
+
+const mapStateToProps = (state: GlobalStateType): MapStateToPropsType => {
     return {
         users: state.findUsersPage.users,
         pageSize: state.findUsersPage.pageSize,
@@ -59,6 +80,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-
-export default connect(mapStateToProps, {requestUsers, follow, unFollow})(FindUsersContainer);
+export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, GlobalStateType>(
+    mapStateToProps, {requestUsers, follow, unFollow}
+    )(FindUsersContainer);
 

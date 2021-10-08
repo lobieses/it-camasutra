@@ -1,11 +1,18 @@
 import Message from './Message';
-import {addMessage} from '../../../Redux/message-reducer';
+import {addMessage, initialStateType} from '../../../Redux/message-reducer';
 import {connect} from 'react-redux';
 import {compose} from "redux";
 import React from "react";
+import {GlobalStateType} from "../../../Redux/store";
 
-class MessageContainer extends React.Component {
-    constructor(props) {
+type StateType = {
+    dialogsMenuIsOpen: boolean
+}
+
+type PropsType = MapStateToPropsType & MapDispatchToPropsType
+
+class MessageContainer extends React.Component<PropsType, StateType> {
+    constructor(props: PropsType) {
         super(props);
         this.state = {dialogsMenuIsOpen: false};
     }
@@ -24,12 +31,21 @@ class MessageContainer extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
+type MapStateToPropsType = {
+    messagePage: initialStateType
+}
+
+type MapDispatchToPropsType = {
+    addMessage: (messageText: string) => void
+}
+
+const mapStateToProps = (state: GlobalStateType) => ({
     messagePage: state.messagePage,
 });
 
 export default compose(
-    connect(mapStateToProps, {addMessage}),
+    connect<MapStateToPropsType, MapDispatchToPropsType, {}, GlobalStateType>(
+        mapStateToProps, {addMessage}),
 )(MessageContainer);
 
 

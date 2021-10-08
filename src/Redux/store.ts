@@ -7,7 +7,7 @@ import appReducer from "./app-reducer";
 import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-let reducers = combineReducers({
+let rootReducer = combineReducers({
     profilePage: profileReducer,
     messagePage: messageReducer,
     findUsersPage: findUsersReducer,
@@ -15,6 +15,9 @@ let reducers = combineReducers({
     app: appReducer,
 });
 
-let store  = createStore(reducers, composeWithDevTools(applyMiddleware(thunkMiddleware)));
+let store  = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunkMiddleware)));
+
+type RootReducerType = typeof rootReducer;
+export type GlobalStateType = ReturnType<RootReducerType>;
 
 export default store;

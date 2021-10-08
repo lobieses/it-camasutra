@@ -1,12 +1,19 @@
-import React from 'react';
+import React, {FC} from 'react';
 import style from './Paginator.module.css';
-
 //icons
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import {userType} from "../../../types/types";
 
-const Paginator = (props) => {
-    const checkNumRange = (page, totalPage) => {
+type PropsType = {
+    totalCounts: number,
+    pageSize: number,
+    focusPage: number,
+    onChangePage: (page: number) => void,
+}
+
+const Paginator: FC<PropsType> = (props) => {
+    const checkNumRange = (page: number, totalPage: number) => {
         if(totalPage > page && page > 0) {
             return true
         }
