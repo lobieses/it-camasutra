@@ -1,8 +1,13 @@
-import React from 'react';
+import React, {FC} from 'react';
 import style from './MessageElem.module.css';
 import defaultPhoto from '../../../../../assets/images/defaultPhoto.svg';
 
-const MessageElem = (props) => {
+type PropsType = {
+    name: string,
+    message: string
+}
+
+const MessageElem: FC<PropsType> = (props) => {
     return (
         <div className={style.messageElem}>
             <div className={style.blockInfo}>

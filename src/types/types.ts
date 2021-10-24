@@ -10,6 +10,11 @@ export type userType = {
     followed: boolean
 }
 
+export type PhotosType = {
+    small: string,
+    large: string
+}
+
 export type profileType = {
     aboutMe: string,
     contacts: {
@@ -26,8 +31,10 @@ export type profileType = {
     lookingForAJobDescription: string,
     fullName: string,
     userId: number,
-    photos: {
-        small: string,
-        large: string
-    }
+    photos: PhotosType
+}
+
+export type DialogName = {
+    id: number,
+    name: string
 }

@@ -1,6 +1,13 @@
-import React from 'react';
+import React, {FC} from 'react';
 import style from './Dialogs.module.css';
 import Name from './Name/Name';
+import {DialogName} from "../../../../types/types";
+
+//type PropsType = {
+//    dialogNames: Array<DialogName>
+//    dialogsMenuIsOpen: boolean,
+//    toggleStateDialogsMenu: () => void
+//}
 
 const Dialogs = (props) => {
     const names = props.dialogNames.map(name => {

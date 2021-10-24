@@ -1,4 +1,4 @@
-import {profileAPI} from '../api/api'
+import {profileAPI} from '../api/profile-api';
 import {ResponseValidatorForUpdateProfileData} from "../utils/validator/validator"
 import {profileType} from '../types/types'
 import {ThunkAction} from "redux-thunk";
@@ -119,7 +119,6 @@ type UserDataType = {
 }
 
 export const updateUserData = (status: string, obj: UserDataType): ThunkType => {
-    debugger
     return async (dispatch) => {
         // dispatch(toggleFetching(true));
         await Promise.all([dispatch(updateStatus(status)), dispatch(updateProfileData(obj))]);
@@ -148,7 +147,6 @@ export const updateProfileData = (obj: UserDataType): ThunkType => {
 }
 
 export const updatePhoto = (file: any): ThunkType => {
-    debugger
     return async (dispatch) => {
         dispatch(toggleFetching(true));
         let response = await profileAPI.updatePhoto(file);

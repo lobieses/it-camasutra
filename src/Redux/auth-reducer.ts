@@ -1,6 +1,9 @@
-import {authMe, security} from '../api/api';
+import {ResultCodes} from '../api/api';
+import {security} from '../api/security-api';
+import {authMe} from "../api/auth-api";
 import {ThunkAction} from "redux-thunk";
 import {GlobalStateType} from "./store";
+
 
 const SET_USERS_DATA = 'SET_USERS_DATA';
 const SET_CAPTCHA_URL = 'SET_CAPTCHA_URL';
@@ -53,17 +56,20 @@ type setCaptchaUrlType = {
 }
 export const setCaptchaUrl = (url: string | null): setCaptchaUrlType => ({type: SET_CAPTCHA_URL, url});
 
-type ThunkType = ThunkAction<Promise<void>, GlobalStateType, unknown, ActionsTypes>
+type ThunkType = ThunkAction<Promise<any>, GlobalStateType, unknown, ActionsTypes> // FIX ANY
 
 export const getAuthUserData = (): ThunkType => {
     return async (dispatch) => {
         const response = await authMe.me();
-        if(response.resultCode === 0) {
+        if(response.resultCode === ResultCodes.Success) {
             const {id, email, login} = response.data;
             dispatch(setUserData(id, email, login, true));
         }
     }
 }
+
+
+
 export const login = (email: string, password: string, rememberMe: boolean = false, captcha: string | null = null): ThunkType => {
     return async (dispatch) => {
         const response = await authMe.login(email, password, rememberMe, captcha);
@@ -77,6 +83,7 @@ export const login = (email: string, password: string, rememberMe: boolean = fal
         }
     }
 }
+
 export const logout = (): ThunkType => {
     return async (dispatch) => {
         const response = await authMe.logout();
@@ -89,6 +96,7 @@ export const logout = (): ThunkType => {
 export const getCaptchaUrl = (): ThunkType => {
     return async (dispatch) => {
         const response = await security.getCaptchaUrl();
+        debugger
         dispatch(setCaptchaUrl(response.url));
     }
 }
