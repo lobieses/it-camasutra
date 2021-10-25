@@ -1,13 +1,8 @@
 import {profileAPI} from '../api/profile-api';
 import {ResponseValidatorForUpdateProfileData} from "../utils/validator/validator"
-import {profileType} from '../types/types'
+import {profileType, PhotosType} from '../types/types'
 import {ThunkAction} from "redux-thunk";
-import {GlobalStateType} from "./store";
-
-const SET_PROFILE = 'SET_PROFILE';
-const SET_STATUS = 'GET_STATUS';
-const SAVE_PHOTO = 'SAVE_PHOTO';
-const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
+import {GlobalStateType, InferActionsTypes} from "./store";
 
 let initialState = {
     profile: null as profileType | any,
@@ -16,28 +11,29 @@ let initialState = {
 };
 
 type initialStateType = typeof initialState;
+type ActionsTypes = InferActionsTypes<typeof actions>;
 
 const profileReducer = (state = initialState, action: ActionsTypes): initialStateType => {
     switch(action.type) {
-        case SET_PROFILE: {
+        case 'SN/PROFILE-REDUCER/SET_PROFILE': {
             return {
                 ...state,
                 profile: action.profile
             };
         }
-        case SET_STATUS: {
+        case 'SN/PROFILE-REDUCER/SET_STATUS': {
             return  {
                 ...state,
                 status: action.status
             };
         }
-        case SAVE_PHOTO: {
+        case 'SN/PROFILE-REDUCER/SAVE_PHOTO': {
             return  {
                 ...state,
                 profile: {...state.profile, photos: action.photos}
             }
         }
-        case TOGGLE_FETCHING: {
+        case 'SN/PROFILE-REDUCER/TOGGLE_FETCHING': {
             return  {
                 ...state,
                 isFetching: action.isFetching
@@ -48,81 +44,40 @@ const profileReducer = (state = initialState, action: ActionsTypes): initialStat
     }
 }
 
-type ActionsTypes = setProfileType | setStatusType | saveLargeAndSmallPhotosType | toggleFetching
-
-type setProfileType = {
-    type: typeof SET_PROFILE,
-    profile: profileType
+export const actions = {
+    setProfile: (profile: profileType) => ({type: 'SN/PROFILE-REDUCER/SET_PROFILE', profile} as const),
+    setStatus: (status: string) => ({type: 'SN/PROFILE-REDUCER/SET_STATUS', status} as const),
+    saveLargeAndSmallPhotos: (photos: PhotosType) => ({type: 'SN/PROFILE-REDUCER/SAVE_PHOTO', photos} as const),
+    toggleFetching: (isFetching: boolean) => ({type: 'SN/PROFILE-REDUCER/TOGGLE_FETCHING', isFetching} as const)
 }
-export const setProfile = (profile: profileType): setProfileType => ({type: SET_PROFILE, profile})
-type setStatusType = {
-    type: typeof SET_STATUS,
-    status: string
-}
-export const setStatus = (status: string): setStatusType => ({type: SET_STATUS, status})
-type photosType = {
-    large: string,
-    small: string
-}
-type saveLargeAndSmallPhotosType = {
-    type: typeof SAVE_PHOTO,
-    photos: photosType
-}
-export const saveLargeAndSmallPhotos = (photos: photosType): saveLargeAndSmallPhotosType => ({type: SAVE_PHOTO, photos})
-type toggleFetching = {
-    type: typeof TOGGLE_FETCHING,
-    isFetching: boolean
-}
-export const toggleFetching = (isFetching: boolean): toggleFetching => ({type: TOGGLE_FETCHING, isFetching})
 
 type ThunkType = ThunkAction<Promise<void>, GlobalStateType, unknown, ActionsTypes>
 
 export const getUserData = (userId: number): ThunkType => {
     return async (dispatch) => {
-        dispatch(toggleFetching(true));
+        dispatch(actions.toggleFetching(true));
         await Promise.all([dispatch(getUserProfile(userId)), dispatch(getStatus(userId))])
-        dispatch(toggleFetching(false));
+        dispatch(actions.toggleFetching(false));
     }
 }
 
 export const getUserProfile = (userId: number): ThunkType => {
     return async (dispatch) => {
         let profile = await profileAPI.getUserProfile(userId);
-        dispatch(setProfile(profile));
+        dispatch(actions.setProfile(profile));
     }
 }
 
 export const getStatus = (userId: number): ThunkType => {
     return async (dispatch) => {
         let status = await profileAPI.getStatus(userId);
-        dispatch(setStatus(status));
+        dispatch(actions.setStatus(status));
     }
 }
 
-type UserDataType = {
-    aboutMe: string,
-    contacts: {
-        facebook: string,
-        github: string,
-        instagram: string,
-        mainLink: string,
-        twitter: string,
-        vk: string,
-        website: string,
-        youtube: string
-    }
-    fullName: string,
-    lookingForAJob: boolean,
-    lookingForAJobDescription: string,
-    photos: photosType,
-    userId: number
-}
-
-export const updateUserData = (status: string, obj: UserDataType): ThunkType => {
+export const updateUserData = (status: string, obj: profileType): ThunkType => {
     return async (dispatch) => {
-        // dispatch(toggleFetching(true));
         await Promise.all([dispatch(updateStatus(status)), dispatch(updateProfileData(obj))]);
-        // dispatch(toggleFetching(false));
     }
 }
 
@@ -130,17 +85,17 @@ export const updateStatus = (status: string): ThunkType => {
     return async (dispatch) => {
         let response = await profileAPI.updateStatus(status);
         if(response.resultCode === 0) {
-            dispatch(setStatus(status));
+            dispatch(actions.setStatus(status));
         }
     }
 }
 
-export const updateProfileData = (obj: UserDataType): ThunkType => {
+export const updateProfileData = (obj: profileType): ThunkType => {
     return async (dispatch) => {
         let response = await profileAPI.updateProfileData(obj);
         if(response.resultCode !== 0) {
             let objForStopSubmit = ResponseValidatorForUpdateProfileData(response.messages);
-            dispatch(toggleFetching(false));
+            dispatch(actions.toggleFetching(false));
             return Promise.reject(objForStopSubmit);
         }
     }
@@ -148,12 +103,12 @@ export const updateProfileData = (obj: UserDataType): ThunkType => {
 
 export const updatePhoto = (file: any): ThunkType => {
     return async (dispatch) => {
-        dispatch(toggleFetching(true));
+        dispatch(actions.toggleFetching(true));
         let response = await profileAPI.updatePhoto(file);
         if(response.resultCode === 0) {
-            dispatch(saveLargeAndSmallPhotos(response.data.photos));
+            dispatch(actions.saveLargeAndSmallPhotos(response.data.photos));
         }
-        dispatch(toggleFetching(false));
+        dispatch(actions.toggleFetching(false));
     }
 }
 

@@ -1,5 +1,5 @@
 import Message from './Message';
-import {addMessage, initialStateType} from '../../../Redux/message-reducer';
+import {actions, initialStateType} from '../../../Redux/message-reducer';
 import {connect} from 'react-redux';
 import {compose} from "redux";
 import React from "react";
@@ -45,7 +45,7 @@ const mapStateToProps = (state: GlobalStateType) => ({
 
 export default compose(
     connect<MapStateToPropsType, MapDispatchToPropsType, {}, GlobalStateType>(
-        mapStateToProps, {addMessage}),
+        mapStateToProps, {...actions}),
 )(MessageContainer);
 
 

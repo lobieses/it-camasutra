@@ -1,18 +1,15 @@
+export type PhotosType = {
+    small: string | null,
+    large: string | null
+}
+
 export type userType = {
     name: string,
     id: number,
     uniqueUrlName: string | null,
-    photos: {
-        small: string | null,
-        large: string | null
-    }
+    photos: PhotosType
     status: string | null,
     followed: boolean
-}
-
-export type PhotosType = {
-    small: string,
-    large: string
 }
 
 export type profileType = {

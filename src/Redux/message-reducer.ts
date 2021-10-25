@@ -1,4 +1,14 @@
-const ADD_MESSAGE = 'ADD-MESSAGE';
+import {InferActionsTypes} from "./store";
+
+type NameType = {
+    id: number,
+    name: string
+}
+
+type MessageType = {
+    name: string,
+    message: string
+}
 
 let initialState = {
     dialogNames: [
@@ -11,37 +21,31 @@ let initialState = {
         {id: 7, name: 'Andrusha'},
         {id: 8, name: 'Petrysha'},
         {id: 9, name: 'Bob'}
-
-    ],
+    ] as Array<NameType>,
     chat: [
         {name: 'name', message: 'hi'},
         {name: 'name', message: 'hi, i am the worst student'},
-    ],
+    ] as Array<MessageType>,
 }
 
-export type initialStateType = typeof initialState
+export type initialStateType = typeof initialState;
+type ActionsTypes = InferActionsTypes<typeof actions>;
 
 const messageReducer = (state = initialState, action: ActionsTypes): initialStateType => {
     switch(action.type) {
-        case ADD_MESSAGE: {       
+        case 'SN/MESSAGE/ADD_MESSAGE': {
             return {
                 ...state,
                 chat: [...state.chat, {name: 'name', message: action.messageText}],
             };
         }
-        default: 
+        default:
             return state;
     }
 }
 
-type ActionsTypes = addMessageType
-
-type addMessageType = {
-    type: typeof  ADD_MESSAGE,
-    messageText: string
-}
-export const addMessage = (messageText: string): addMessageType => {
-    return {type: ADD_MESSAGE, messageText};
+export const actions = {
+    addMessage: (messageText: string) => ({type: 'SN/MESSAGE/ADD_MESSAGE', messageText} as const)
 }
 
 export default messageReducer;
