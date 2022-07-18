@@ -1,3 +1,20 @@
+.tryVPN {
+    position: absolute;
+    top: 20%;
+    font-size: 30px;
+}
+
+.tryVPN span {
+    transition: 0.6s;
+    opacity: 0;
+}
+
+.tryVPN span.active {
+    transition: 0.6s;
+    opacity: 1;
+    color: #dedede;
+}
+
 .preloader {
     display: flex;
     justify-content: center;
